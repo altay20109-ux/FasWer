@@ -32,7 +32,7 @@ FasWer is designed to feel familiar to developers coming from Java while remaini
 ```faswer
 package example;
 
-public class Main {
+public const class Main {
     public static void onCreate() {
         Player player = new Player("FasWer");
 
