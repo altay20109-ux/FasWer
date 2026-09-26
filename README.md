@@ -1,208 +1,240 @@
 # FasWer
 
-### A modern, Java-like programming language
+### A new compiled programming language built from the ground up.
 
-**FasWer** is a statically typed, object-oriented programming language designed with a familiar Java-like syntax while providing its own interpreter, type system, and runtime.
+FasWer is a Java-like programming language designed around **strict typing, object-oriented programming, clean syntax, and high performance**.
 
-> **FasWer is currently distributed as a closed-source project.**
-> Official releases are provided through this repository.
+The goal of FasWer is simple: provide a familiar programming model while building its own language, compiler, runtime, and development ecosystem from the ground up.
+
+> **FasWer — A new era of coding.**
 
 ---
 
 ## ✨ Features
 
-* 🧩 **Object-oriented programming**
-* 🔒 **Strict static typing**
-* 📦 **Packages and imports**
-* 🏗️ **Classes, inheritance, and interfaces**
-* 🔄 **Method overriding**
-* 🧱 **Constructors and nested classes**
-* 🧮 **Primitive and reference types**
-* 📚 **Arrays**
-* ⚙️ **Dedicated interpreter and runtime**
-* ❌ **Clear compile-time and runtime errors**
-* ☕ **Familiar Java-like syntax**
-
-FasWer is designed to feel familiar to developers coming from Java while remaining an independent programming language.
+* 🧱 Object-oriented programming
+* 🔒 Strict static typing
+* ⚡ High-performance execution
+* 🧠 JIT compilation in development
+* 📦 Packages and imports
+* 🏗️ Classes, objects, constructors and inheritance
+* 🔄 Method overriding with `override`
+* 🔐 `public`, `private`, and `static` modifiers
+* 🧮 Primitive types
+* 📚 Arrays
+* 🧵 Strings
+* 🛠️ Built-in runtime classes
+* ❌ No annotations
+* 🧹 Clean Java-like syntax
 
 ---
 
-## 📝 Example
+## 💻 Example
 
-```faswer
+```java
 package example;
 
-public const class Main {
+class Main {
     public static void onCreate() {
         Player player = new Player("FasWer");
 
         player.sayHello();
     }
+}
 
-    public const class Player {
-        private string name;
+class Player {
+    private string name;
 
-        public Player(string name) {
-            this.name = name;
-        }
+    public Player(string name) {
+        this.name = name;
+    }
 
-        public void sayHello() {
-            System.println("Hello from " + name + "!");
-        }
+    public void sayHello() {
+        System.out.println("Hello, " + name + "!");
     }
 }
 ```
+
+FasWer is designed to feel familiar to developers coming from Java while remaining its own language.
+
+---
+
+## 🚀 Performance
+
+Performance is one of the major goals of FasWer.
+
+Performance is actively being improved through runtime optimizations and the development of a JIT compiler.
+
+> Benchmark results depend heavily on CPU, operating system, runtime configuration, and workload. FasWer benchmarks are therefore intended to be compared under the same conditions.
+
+---
+
+## 🧠 Architecture
+
+FasWer is being developed as a complete language ecosystem rather than simply a syntax layer.
+
+```text
+FasWer Source
+      │
+      ▼
+   Lexer
+      │
+      ▼
+   Parser
+      │
+      ▼
+     AST
+      │
+      ▼
+   Compiler
+      │
+      ▼
+   Runtime
+      │
+      ▼
+ JIT Compiler
+```
+
+The architecture is continuously evolving as performance and language features improve.
+
+---
+
+## 📦 File Extension
+
+FasWer source files use:
+
+```text
+.fw
+```
+
+Example:
+
+```text
+Main.fw
+Player.fw
+MathUtils.fw
+```
+
+Packages correspond to directory structures, keeping projects organized and predictable.
+
+---
+
+## 🛠️ Development Status
+
+FasWer is actively being developed.
+
+### Current
+
+* [x] Lexer
+* [x] Parser
+* [x] AST
+* [x] Static type checking
+* [x] Classes
+* [x] Objects
+* [x] Constructors
+* [x] Inheritance
+* [x] Method overriding
+* [x] Static members
+* [x] Packages
+* [x] Imports
+* [x] Arrays
+* [x] Primitive types
+* [x] Runtime classes
+* [x] Installer
+* [x] Performance optimization
+* [x] JIT compiler
+* [ ] Further runtime optimization
+* [ ] Standard library expansion
 
 ---
 
 ## 🎯 Goals
 
-FasWer aims to provide a programming experience that combines:
+The long-term goal of FasWer is to become a **fast, practical, general-purpose programming language** with its own:
 
-* The familiarity of Java-like syntax
-* Strong static typing
-* Object-oriented programming
-* A dedicated interpreter and runtime
-* Clear and professional diagnostics
-* A growing standard library
+* Compiler
+* Runtime
+* JIT compiler
+* Standard library
+* Package system
+* Development tools
+* Distribution system
 
-The goal is to create a complete programming language and ecosystem while maintaining its own identity.
+FasWer is not intended to be a Java implementation or a replacement for Java.
+
+It is its **own programming language**, inspired by the parts of Java that make large applications structured and maintainable.
 
 ---
 
-## ⚙️ How FasWer Works
+## 📊 Benchmarks
 
-FasWer currently uses an interpreter-based execution model.
+FasWer maintains its own benchmark suite to measure improvements over time.
+
+Planned benchmark categories include:
 
 ```text
-FasWer Source
-     │
-     ▼
-   Lexer
-     │
-     ▼
-   Parser
-     │
-     ▼
-    AST
-     │
-     ▼
- Type Checking
-     │
-     ▼
- Interpreter
-     │
-     ▼
-   Runtime
+Arithmetic
+Loops
+Arrays
+Method Calls
+Object Allocation
+Strings
+Recursion
+Inheritance
+Collections
+File I/O
+Real-world workloads
 ```
 
-The interpreter evaluates programs and manages the language's runtime environment, objects, classes, methods, and values.
-
----
-
-## 📦 Releases
-
-Official FasWer releases are published through GitHub Releases.
-
-A release may include:
-
-* FasWer interpreter
-* FasWer runtime
-* Standard library
-* Platform-specific distributions
-* Documentation
-
-Check the **Releases** section of this repository for available versions.
-
----
-
-## 📚 Documentation
-
-Documentation covers:
-
-* Language syntax
-* Types
-* Classes and objects
-* Inheritance
-* Interfaces
-* Packages
-* Arrays
-* Standard library
-* Installation
-* Runtime behavior
-
----
-
-## 🔒 Source Code
-
-FasWer is a **closed-source project**.
-
-The source code of the language implementation is not publicly available. This repository is primarily used for:
-
-* 📦 Official releases
-* 📖 Documentation
-* 🐛 Bug reports
-* 💬 Community discussions
-* 📋 Project information
-
----
-
-## 🐛 Bug Reports
-
-Found a problem with FasWer?
-
-Please open an **Issue** and include:
-
-1. FasWer version
-2. Operating system
-3. A minimal example that reproduces the problem
-4. The error message or unexpected behavior
-5. Any additional information that may help reproduce it
-
----
-
-## 💬 Discussions
-
-Use GitHub Discussions for:
-
-* Questions
-* Ideas
-* General FasWer discussions
-* Language design discussions
-* Community feedback
+Benchmarks are run against other languages using equivalent implementations and identical hardware conditions whenever possible.
 
 ---
 
 ## 🗺️ Roadmap
 
-FasWer is actively evolving.
+### FasWer 1.0
 
-Planned and ongoing work may include:
+* [x] Core language
+* [x] Object-oriented programming
+* [x] Type system
+* [x] Packages
+* [x] Runtime
+* [x] Standard library foundation
+* [x] Installer
+* [x] JIT compiler
+* [x] Performance stabilization
+* [x] 1.0 release
 
-* [ ] Interpreter optimizations
-* [ ] Expanded standard library
-* [ ] Improved diagnostics
-* [ ] Better tooling
-* [ ] Cross-platform distribution
-* [ ] IDE/editor support
-* [ ] Further runtime improvements
+### Future
 
-The roadmap may change as FasWer develops.
+* Expanded standard library
+* Better developer tooling
+* Debugging tools
+* Improved compiler optimizations
+* More runtime optimizations
+* Cross-platform distribution
+* IDE tooling
 
 ---
 
-## 📄 License
+## 📜 License
 
-FasWer is distributed under its own license.
+FasWer is currently **closed-source**.
 
-See the license included with each official release for the terms governing the use and distribution of FasWer.
+Source availability and distribution terms may change in future releases.
 
 ---
 
-## FasWer
+## 👤 Developer
 
-**A new programming language.**
+FasWer is developed independently by **Altay**.
 
-Familiar syntax.
-Strong typing.
-Its own runtime.
+The project is built from the ground up with a focus on programming-language design, compiler development, runtime engineering, and performance.
+
+---
+
+# FasWer
+
+**Write it. Compile it. Run it.**
+
+> *A new era of coding.*
