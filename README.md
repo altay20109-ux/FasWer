@@ -34,7 +34,7 @@ The goal of FasWer is simple: provide a familiar programming model while buildin
 ```java
 package example;
 
-class Main {
+public const class Main {
     public static void onCreate() {
         Player player = new Player("FasWer");
 
@@ -42,7 +42,7 @@ class Main {
     }
 }
 
-class Player {
+public const class Player {
     private string name;
 
     public Player(string name) {
@@ -50,7 +50,7 @@ class Player {
     }
 
     public void sayHello() {
-        System.out.println("Hello, " + name + "!");
+        System.println("Hello, " + name + "!");
     }
 }
 ```
