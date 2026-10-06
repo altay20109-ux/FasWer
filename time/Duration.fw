@@ -1,0 +1,88 @@
+package faswer.time;
+
+import faswer.lang.Object;
+
+public class Duration extends Object {
+    private long millis;
+
+    private Duration(long millis) {
+        this.millis = millis;
+    }
+
+    public static Duration ofMillis(long millis) {
+        return new Duration(millis);
+    }
+
+    public static Duration ofSeconds(long seconds) {
+        return new Duration(seconds * 1000L);
+    }
+
+    public static Duration ofMinutes(long minutes) {
+        return new Duration(minutes * 60000L);
+    }
+
+    public static Duration ofHours(long hours) {
+        return new Duration(hours * 3600000L);
+    }
+
+    public static Duration ofDays(long days) {
+        return new Duration(days * 86400000L);
+    }
+
+    public static Duration between(long startMillis, long endMillis) {
+        return new Duration(endMillis - startMillis);
+    }
+
+    public long toMillis() {
+        return millis;
+    }
+
+    public long toSeconds() {
+        return millis / 1000L;
+    }
+
+    public long toMinutes() {
+        return millis / 60000L;
+    }
+
+    public long toHours() {
+        return millis / 3600000L;
+    }
+
+    public long toDays() {
+        return millis / 86400000L;
+    }
+
+    public Duration plus(Duration other) {
+        return new Duration(this.millis + other.toMillis());
+    }
+
+    public Duration minus(Duration other) {
+        return new Duration(this.millis - other.toMillis());
+    }
+
+    public boolean isNegative() {
+        return millis < 0;
+    }
+
+    public boolean isZero() {
+        return millis == 0;
+    }
+
+    public int compareTo(Duration other) {
+        long diff = this.millis - other.toMillis();
+        if (diff < 0) return -1;
+        if (diff > 0) return 1;
+        return 0;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Duration)) return false;
+        Duration otherDuration = (Duration) other;
+        return this.millis == otherDuration.toMillis();
+    }
+
+    override public string toString() {
+        return "PT" + (millis / 1000L) + "." + (millis % 1000L) + "S";
+    }
+}

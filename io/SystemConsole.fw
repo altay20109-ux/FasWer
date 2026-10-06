@@ -1,0 +1,7 @@
+package faswer.io;
+
+public const class SystemConsole extends Console {
+    public SystemConsole() {
+        super();
+    }
+}

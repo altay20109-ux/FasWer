@@ -1,0 +1,9 @@
+package faswer.io;
+
+public const class BufferedOutputStream extends OutputStream {
+    public BufferedOutputStream(OutputStream source) {
+        this.handle = wrap(source.getHandle());
+    }
+
+    private static native long wrap(long sourceHandle);
+}

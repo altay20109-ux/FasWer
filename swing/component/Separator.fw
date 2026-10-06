@@ -1,0 +1,27 @@
+package faswer.swing.component;
+
+public class Separator extends Component {
+    public static int HORIZONTAL = 0;
+    public static int VERTICAL = 1;
+
+    public Separator(int orientation) {
+        this.id = createSeparator(0L, orientation);
+    }
+
+    private static native long createSeparator(long windowID, int orientation);
+
+    private static native void setOrientation(long id, int orientation);
+    public void setOrientation(int orientation) {
+        setOrientation(this.id, orientation);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+}

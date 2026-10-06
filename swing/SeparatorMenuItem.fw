@@ -1,0 +1,10 @@
+package faswer.swing;
+
+public class SeparatorMenuItem extends MenuItem {
+    public SeparatorMenuItem() {
+        super("");
+        this.id = createMenuItem();
+    }
+
+    private static native long createMenuItem();
+}

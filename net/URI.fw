@@ -1,0 +1,53 @@
+package faswer.net;
+
+import faswer.lang.String;
+import faswer.lang.Object;
+
+public class URI extends Object {
+    private string value;
+
+    public URI(string value) {
+        this.value = value;
+    }
+
+    private static native string schemeOf(string uri);
+    private static native string hostOf(string uri);
+    private static native int portOf(string uri);
+    private static native string pathOf(string uri);
+    private static native string queryOf(string uri);
+    private static native string fragmentOf(string uri);
+
+    public string getScheme() {
+        return schemeOf(value);
+    }
+
+    public string getHost() {
+        return hostOf(value);
+    }
+
+    public int getPort() {
+        return portOf(value);
+    }
+
+    public string getPath() {
+        return pathOf(value);
+    }
+
+    public string getQuery() {
+        return queryOf(value);
+    }
+
+    public string getFragment() {
+        return fragmentOf(value);
+    }
+
+    override public string toString() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof URI)) return false;
+        URI otherURI = (URI) other;
+        return String.equals(this.value, otherURI.toString());
+    }
+}

@@ -1,0 +1,34 @@
+package faswer.lang;
+
+public const class Long with(long value) extends Object {
+    public long longValue() {
+        return value;
+    }
+
+    public int intValue() {
+        return (int) value;
+    }
+
+    public float floatValue() {
+        return value;
+    }
+
+    public double doubleValue() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Long)) return false;
+        Long otherLong = (Long) other;
+        return this.value == otherLong.longValue();
+    }
+
+    override public int hashCode() {
+        return (int) (value ^ (value >>> 32));
+    }
+
+    public static native long parseLong(object o);
+    public static native string toString(long value);
+    public static native Long valueOf(long value);
+    public static native Long valueOf(string s);
+}

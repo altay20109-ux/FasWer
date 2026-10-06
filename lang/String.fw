@@ -1,0 +1,43 @@
+package faswer.lang;
+
+public const class String with(string value) extends Object {
+    public boolean equals(object other) {
+        if (!(other instanceof String)) return false;
+        String otherString = (String) other;
+        return equals(this.value, otherString);
+    }
+
+    override public int hashCode() {
+        return hashCode(this.value);
+    }
+    
+    override public string toString() {
+        return value;
+    }
+    
+    public static native string toString(object o);
+    
+    public static native int length(string value);
+    public static native char charAt(string value, int index);
+    public static native string substring(string value, int start);
+    public static native string substring(string value, int start, int end);
+    public static native string toLowerCase(string value);
+    public static native string toUpperCase(string value);
+    public static native boolean equals(string left, string right);
+    public static native boolean equalsIgnoreCase(string left, string right);
+    public static native boolean startsWith(string value, string prefix);
+    public static native boolean endsWith(string value, string suffix);
+    public static native int indexOf(string value, string search);
+    public static native int lastIndexOf(string value, string search);
+    public static native string replace(string value, string target, string replacement);
+    public static native string trim(string value);
+
+    public static native boolean contains(string value, string search);
+    public static native boolean isEmpty(string value);
+    public static native boolean isBlank(string value);
+    public static native string[] split(string value, string delimiter);
+    public static native string repeat(string value, int times);
+    public static native int hashCode(string value);
+
+    public static native string valueOf(object value);
+}

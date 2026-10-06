@@ -1,0 +1,60 @@
+package faswer.time;
+
+import faswer.lang.String;
+import faswer.lang.Object;
+
+public class Instant extends Object {
+    private long epochMilli;
+
+    private Instant(long epochMilli) {
+        this.epochMilli = epochMilli;
+    }
+
+    private static native long currentMillis();
+
+    public static Instant now() {
+        return new Instant(currentMillis());
+    }
+
+    public static Instant ofEpochMilli(long epochMilli) {
+        return new Instant(epochMilli);
+    }
+
+    public long toEpochMilli() {
+        return epochMilli;
+    }
+
+    public Instant plusMillis(long millis) {
+        return new Instant(this.epochMilli + millis);
+    }
+
+    public Instant minusMillis(long millis) {
+        return new Instant(this.epochMilli - millis);
+    }
+
+    public Duration durationSince(Instant earlier) {
+        return Duration.between(earlier.toEpochMilli(), this.epochMilli);
+    }
+
+    public boolean isBefore(Instant other) {
+        return this.epochMilli < other.toEpochMilli();
+    }
+
+    public boolean isAfter(Instant other) {
+        return this.epochMilli > other.toEpochMilli();
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Instant)) return false;
+        Instant otherInstant = (Instant) other;
+        return this.epochMilli == otherInstant.toEpochMilli();
+    }
+
+    override public int hashCode() {
+        return (int) (epochMilli ^ (epochMilli >>> 32));
+    }
+
+    override public string toString() {
+        return String.valueOf(this.epochMilli);
+    }
+}

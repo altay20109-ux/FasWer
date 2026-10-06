@@ -1,0 +1,27 @@
+package faswer.io;
+
+public class OutputStream {
+    protected long handle;
+
+    protected OutputStream() {}
+
+    protected static native void writeByte(long handle, int b);
+    protected static native void flushHandle(long handle);
+    protected static native void closeHandle(long handle);
+
+    public void write(int b) {
+        writeByte(this.handle, b);
+    }
+
+    public void flush() {
+        flushHandle(this.handle);
+    }
+
+    public void close() {
+        closeHandle(this.handle);
+    }
+
+    public long getHandle() {
+        return this.handle;
+    }
+}

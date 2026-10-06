@@ -1,0 +1,45 @@
+package faswer.swing;
+
+public class MenuItem {
+    protected long id;
+
+    public MenuItem(string label) {
+        this.id = createMenuItem(label);
+    }
+
+    private static native long createMenuItem(string label);
+
+    private static native void setLabel(long id, string label);
+    public void setLabel(string label) {
+        setLabel(this.id, label);
+    }
+
+    private static native string getLabel(long id);
+    public string getLabel() {
+        return getLabel(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void setShortcut(long id, string keystroke);
+    public void setShortcut(string keystroke) {
+        setShortcut(this.id, keystroke);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+
+    public long getMenuItemID() {
+        return this.id;
+    }
+}

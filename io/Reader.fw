@@ -1,0 +1,22 @@
+package faswer.io;
+
+public class Reader {
+    protected long handle;
+
+    protected Reader() {}
+
+    protected static native int readChar(long handle);
+    protected static native void closeReaderHandle(long handle);
+
+    public int read() {
+        return readChar(this.handle);
+    }
+
+    public void close() {
+        closeReaderHandle(this.handle);
+    }
+
+    public long getHandle() {
+        return this.handle;
+    }
+}

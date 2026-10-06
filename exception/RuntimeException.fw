@@ -1,0 +1,7 @@
+package faswer.exception;
+
+public class RuntimeException extends Exception {
+    public RuntimeException(string message) {
+        super("Runtime Exception: " + message);
+    }
+}

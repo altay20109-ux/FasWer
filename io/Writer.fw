@@ -1,0 +1,27 @@
+package faswer.io;
+
+public class Writer {
+    protected long handle;
+
+    protected Writer() {}
+
+    protected static native void writeText(long handle, string text);
+    protected static native void flushWriterHandle(long handle);
+    protected static native void closeWriterHandle(long handle);
+
+    public void write(string text) {
+        writeText(this.handle, text);
+    }
+
+    public void flush() {
+        flushWriterHandle(this.handle);
+    }
+
+    public void close() {
+        closeWriterHandle(this.handle);
+    }
+
+    public long getHandle() {
+        return this.handle;
+    }
+}

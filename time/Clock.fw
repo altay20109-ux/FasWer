@@ -1,0 +1,10 @@
+package faswer.time;
+
+public const class Clock {
+    public static native long millis();
+    public static native long nanoTime();
+
+    public static Instant instant() {
+        return Instant.now();
+    }
+}

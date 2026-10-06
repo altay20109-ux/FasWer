@@ -1,0 +1,60 @@
+package faswer.lang;
+
+public const class StringBuilder extends Object {
+    private string value;
+
+    public StringBuilder() {
+        this.value = "";
+    }
+
+    public StringBuilder(string initialValue) {
+        this.value = initialValue;
+    }
+
+    public StringBuilder append(string s) {
+        this.value = this.value + s;
+        return this;
+    }
+
+    public StringBuilder append(int i) {
+        this.value = this.value + String.valueOf(i);
+        return this;
+    }
+
+    public StringBuilder append(long l) {
+        this.value = this.value + String.valueOf(l);
+        return this;
+    }
+
+    public StringBuilder append(float f) {
+        this.value = this.value + String.valueOf(f);
+        return this;
+    }
+
+    public StringBuilder append(double d) {
+        this.value = this.value + String.valueOf(d);
+        return this;
+    }
+
+    public StringBuilder append(boolean b) {
+        this.value = this.value + String.valueOf(b);
+        return this;
+    }
+
+    public StringBuilder append(object o) {
+        this.value = this.value + String.valueOf(o);
+        return this;
+    }
+
+    public int length() {
+        return String.length(value);
+    }
+
+    public void clear() {
+        this.value = "";
+    }
+
+    override override public string toString() {
+        return value;
+    }
+}

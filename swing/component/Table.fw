@@ -1,0 +1,64 @@
+package faswer.swing.component;
+
+public class Table extends Component {
+    public Table(string[] columns) {
+        this.id = createTable(0L, columns);
+    }
+
+    private static native long createTable(long windowID, string[] columns);
+
+    private static native void addRow(long id, object[] values);
+    public void addRow(object[] values) {
+        addRow(this.id, values);
+    }
+
+    private static native void removeRow(long id, int row);
+    public void removeRow(int row) {
+        removeRow(this.id, row);
+    }
+
+    private static native void setValueAt(long id, object value, int row, int column);
+    public void setValueAt(object value, int row, int column) {
+        setValueAt(this.id, value, row, column);
+    }
+
+    private static native object getValueAt(long id, int row, int column);
+    public object getValueAt(int row, int column) {
+        return getValueAt(this.id, row, column);
+    }
+
+    private static native int getRowCount(long id);
+    public int getRowCount() {
+        return getRowCount(this.id);
+    }
+
+    private static native int getColumnCount(long id);
+    public int getColumnCount() {
+        return getColumnCount(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

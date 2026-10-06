@@ -1,0 +1,9 @@
+package faswer.io;
+
+public const class FileInputStream extends InputStream {
+    public FileInputStream(string path) {
+        this.handle = openFile(path);
+    }
+
+    private static native long openFile(string path);
+}

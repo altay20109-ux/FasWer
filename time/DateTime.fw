@@ -1,0 +1,104 @@
+package faswer.time;
+
+import faswer.lang.Object;
+
+public class DateTime extends Object {
+    private long epochMilli;
+
+    public DateTime(int year, int month, int day, int hour, int minute, int second) {
+        this.epochMilli = ofYMDHMS(year, month, day, hour, minute, second);
+    }
+
+    private DateTime(long epochMilli) {
+        this.epochMilli = epochMilli;
+    }
+
+    private static native long nowMillis();
+    private static native long ofYMDHMS(int year, int month, int day, int hour, int minute, int second);
+    private static native int yearOf(long millis);
+    private static native int monthOf(long millis);
+    private static native int dayOf(long millis);
+    private static native int hourOf(long millis);
+    private static native int minuteOf(long millis);
+    private static native int secondOf(long millis);
+    private static native int dayOfWeekOf(long millis);
+    private static native string format(long millis, string pattern);
+
+    public static DateTime now() {
+        return new DateTime(nowMillis());
+    }
+
+    public static DateTime ofEpochMilli(long millis) {
+        return new DateTime(millis);
+    }
+
+    public int getYear() {
+        return yearOf(epochMilli);
+    }
+
+    public int getMonth() {
+        return monthOf(epochMilli);
+    }
+
+    public int getDay() {
+        return dayOf(epochMilli);
+    }
+
+    public int getHour() {
+        return hourOf(epochMilli);
+    }
+
+    public int getMinute() {
+        return minuteOf(epochMilli);
+    }
+
+    public int getSecond() {
+        return secondOf(epochMilli);
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeekOf(epochMilli);
+    }
+
+    public long toEpochMilli() {
+        return epochMilli;
+    }
+
+    public Date toDate() {
+        return dateFromMillis();
+    }
+
+    private Date dateFromMillis() {
+        return new Date(getYear(), getMonth(), getDay());
+    }
+
+    public Time toTime() {
+        return new Time(getHour(), getMinute(), getSecond());
+    }
+
+    public DateTime plusMillis(long millis) {
+        return new DateTime(this.epochMilli + millis);
+    }
+
+    public boolean isBefore(DateTime other) {
+        return this.epochMilli < other.toEpochMilli();
+    }
+
+    public boolean isAfter(DateTime other) {
+        return this.epochMilli > other.toEpochMilli();
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof DateTime)) return false;
+        DateTime otherDateTime = (DateTime) other;
+        return this.epochMilli == otherDateTime.toEpochMilli();
+    }
+
+    public string format(string pattern) {
+        return format(epochMilli, pattern);
+    }
+
+    override public string toString() {
+        return format("yyyy-MM-dd HH:mm:ss");
+    }
+}

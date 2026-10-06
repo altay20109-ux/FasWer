@@ -1,0 +1,14 @@
+package faswer.io;
+
+public const class BufferedWriter extends Writer {
+    public BufferedWriter(Writer source) {
+        this.handle = wrap(source.getHandle());
+    }
+
+    private static native long wrap(long sourceHandle);
+    private static native void newLineOf(long handle);
+
+    public void newLine() {
+        newLineOf(this.handle);
+    }
+}

@@ -1,0 +1,38 @@
+package faswer.net;
+
+import faswer.lang.Object;
+
+public const class InetAddress extends Object {
+    private string hostName;
+    private string hostAddress;
+
+    private InetAddress(string hostName, string hostAddress) {
+        this.hostName = hostName;
+        this.hostAddress = hostAddress;
+    }
+
+    private static native string resolveAddress(string host);
+    private static native string resolveHostName(string host);
+    private static native string localAddress();
+    private static native string localHostName();
+
+    public static InetAddress getByName(string host) {
+        return new InetAddress(resolveHostName(host), resolveAddress(host));
+    }
+
+    public static InetAddress getLocalHost() {
+        return new InetAddress(localHostName(), localAddress());
+    }
+
+    public string getHostName() {
+        return hostName;
+    }
+
+    public string getHostAddress() {
+        return hostAddress;
+    }
+
+    override public string toString() {
+        return hostName + "/" + hostAddress;
+    }
+}

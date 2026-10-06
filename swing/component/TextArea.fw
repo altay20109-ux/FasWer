@@ -1,0 +1,84 @@
+package faswer.swing.component;
+
+public class TextArea extends Component {
+    public TextArea(string text) {
+        this.id = createTextArea(0L, text);
+    }
+
+    private static native long createTextArea(long windowID, string text);
+
+    private static native void setText(long id, string text);
+    public void setText(string text) {
+        setText(this.id, text);
+    }
+
+    private static native string getText(long id);
+    public string getText() {
+        return getText(this.id);
+    }
+
+    private static native void append(long id, string text);
+    public void append(string text) {
+        append(this.id, text);
+    }
+
+    private static native void setLineWrap(long id, boolean wrap);
+    public void setLineWrap(boolean wrap) {
+        setLineWrap(this.id, wrap);
+    }
+
+    private static native void setWrapStyleWord(long id, boolean wrapStyleWord);
+    public void setWrapStyleWord(boolean wrapStyleWord) {
+        setWrapStyleWord(this.id, wrapStyleWord);
+    }
+
+    private static native void setEditable(long id, boolean editable);
+    public void setEditable(boolean editable) {
+        setEditable(this.id, editable);
+    }
+
+    private static native void setRows(long id, int rows);
+    public void setRows(int rows) {
+        setRows(this.id, rows);
+    }
+
+    private static native void setColumns(long id, int columns);
+    public void setColumns(int columns) {
+        setColumns(this.id, columns);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+
+    private static native void setFont(long id, object font);
+    public void setFont(object font) {
+        setFont(this.id, font);
+    }
+
+    private static native object getFont(long id);
+    public object getFont() {
+        return getFont(this.id);
+    }
+}

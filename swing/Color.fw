@@ -1,0 +1,101 @@
+package faswer.swing;
+
+import faswer.lang.Object;
+
+public class Color extends Object {
+    private int red;
+    private int green;
+    private int blue;
+    private int alpha;
+
+    public Color(int red, int green, int blue) {
+        Color(red, green, blue, 255);
+    }
+
+    public Color(int red, int green, int blue, int alpha) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = alpha;
+    }
+
+    public static Color black() {
+        return new Color(0, 0, 0);
+    }
+
+    public static Color white() {
+        return new Color(255, 255, 255);
+    }
+
+    public static Color red() {
+        return new Color(255, 0, 0);
+    }
+
+    public static Color green() {
+        return new Color(0, 255, 0);
+    }
+
+    public static Color blue() {
+        return new Color(0, 0, 255);
+    }
+
+    public static Color yellow() {
+        return new Color(255, 255, 0);
+    }
+
+    public static Color cyan() {
+        return new Color(0, 255, 255);
+    }
+
+    public static Color magenta() {
+        return new Color(255, 0, 255);
+    }
+
+    public static Color gray() {
+        return new Color(128, 128, 128);
+    }
+
+    public static Color orange() {
+        return new Color(255, 200, 0);
+    }
+
+    public static Color pink() {
+        return new Color(255, 175, 175);
+    }
+
+    public int getRed() {
+        return red;
+    }
+
+    public int getGreen() {
+        return green;
+    }
+
+    public int getBlue() {
+        return blue;
+    }
+
+    public int getAlpha() {
+        return alpha;
+    }
+
+    public int toRGB() {
+        return (alpha << 24) | (red << 16) | (green << 8) | blue;
+    }
+
+    public static native string toHex(int red, int green, int blue);
+    public string toHexString() {
+        return toHex(red, green, blue);
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Color)) return false;
+        Color otherColor = (Color) other;
+        return this.red == otherColor.getRed() && this.green == otherColor.getGreen()
+            && this.blue == otherColor.getBlue() && this.alpha == otherColor.getAlpha();
+    }
+
+    override public string toString() {
+        return "Color(" + red + ", " + green + ", " + blue + ", " + alpha + ")";
+    }
+}

@@ -1,0 +1,37 @@
+package faswer.lang;
+
+public class Enum extends Object {
+    private string name;
+    private int ordinal;
+
+    public Enum(string name, int ordinal) {
+        this.name = name;
+        this.ordinal = ordinal;
+    }
+
+    public string name() {
+        return name;
+    }
+
+    public int ordinal() {
+        return ordinal;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Enum)) return false;
+        Enum otherEnum = (Enum) other;
+        return this.ordinal == otherEnum.ordinal() && String.equals(this.name, otherEnum.name());
+    }
+
+    override public int hashCode() {
+        return String.hashCode(name) ^ ordinal;
+    }
+
+    override public string toString() {
+        return name;
+    }
+
+    public int compareTo(Enum other) {
+        return this.ordinal - other.ordinal();
+    }
+}

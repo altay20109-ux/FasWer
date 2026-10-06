@@ -1,0 +1,36 @@
+package faswer.lang;
+
+public const class Integer with(int value) extends Object {
+    public int intValue() {
+        return value;
+    }
+
+    public long longValue() {
+        return value;
+    }
+
+    public float floatValue() {
+        return value;
+    }
+
+    public double doubleValue() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Integer)) return false;
+        Integer otherInteger = (Integer) other;
+        return this.value == otherInteger.intValue();
+    }
+
+    override public int hashCode() {
+        return value;
+    }
+
+    public static native int parseInt(object value);
+    public static native string toString(int value);
+    override public string toString() {
+        return String.valueOf(this.intValue());
+    }
+    public static native Integer valueOf(object value);
+}

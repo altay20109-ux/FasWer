@@ -1,0 +1,39 @@
+package faswer.swing.component;
+
+public class Spinner extends Component {
+    public Spinner(int value, int min, int max, int step) {
+        this.id = createSpinner(0L, value, min, max, step);
+    }
+
+    private static native long createSpinner(long windowID, int value, int min, int max, int step);
+
+    private static native void setValue(long id, int value);
+    public void setValue(int value) {
+        setValue(this.id, value);
+    }
+
+    private static native int getValue(long id);
+    public int getValue() {
+        return getValue(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+}

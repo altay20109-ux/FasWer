@@ -1,0 +1,39 @@
+package faswer.swing.component;
+
+public class StatusBar extends Component {
+    public StatusBar() {
+        this.id = createStatusBar(0L);
+    }
+
+    private static native long createStatusBar(long windowID);
+
+    private static native void setText(long id, string text);
+    public void setText(string text) {
+        setText(this.id, text);
+    }
+
+    private static native string getText(long id);
+    public string getText() {
+        return getText(this.id);
+    }
+
+    private static native void add(long id, long componentID);
+    public void add(Component c) {
+        add(this.id, c.getComponent());
+    }
+
+    private static native void remove(long id, long componentID);
+    public void remove(Component c) {
+        remove(this.id, c.getComponent());
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+}

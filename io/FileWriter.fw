@@ -1,0 +1,13 @@
+package faswer.io;
+
+public const class FileWriter extends Writer {
+    public FileWriter(string path) {
+        this.handle = openFile(path, false);
+    }
+
+    public FileWriter(string path, boolean append) {
+        this.handle = openFile(path, append);
+    }
+
+    private static native long openFile(string path, boolean append);
+}

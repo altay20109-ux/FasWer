@@ -1,0 +1,46 @@
+package faswer.net;
+
+public class HttpRequest {
+    private string url;
+    private string method;
+    private string body;
+    private string headerBlob;
+
+    public HttpRequest(string url) {
+        this.url = url;
+        this.method = "GET";
+        this.body = "";
+        this.headerBlob = "";
+    }
+
+    public HttpRequest method(string method) {
+        this.method = method;
+        return this;
+    }
+
+    public HttpRequest body(string body) {
+        this.body = body;
+        return this;
+    }
+
+    public HttpRequest header(string name, string value) {
+        this.headerBlob = this.headerBlob + name + ":" + value + "\n";
+        return this;
+    }
+
+    public string getUrl() {
+        return url;
+    }
+
+    public string getMethod() {
+        return method;
+    }
+
+    public string getBody() {
+        return body;
+    }
+
+    public string getHeaderBlob() {
+        return headerBlob;
+    }
+}

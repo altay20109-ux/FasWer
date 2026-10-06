@@ -1,0 +1,42 @@
+package faswer.swing.component;
+
+import faswer.swing.Border;
+
+public abstract class Component {
+    protected long id;
+
+    public long getComponent() {
+        return this.id;
+    }
+
+    private static native void setPadding(long id, int top, int right, int bottom, int left);
+
+    public void setPadding(int top, int right, int bottom, int left) {
+        setPadding(this.id, top, right, bottom, left);
+    }
+
+    private static native void setBorder(long id, long borderID);
+    public void setBorder(Border border) {
+        setBorder(this.id, border.getHandle());
+    }
+
+    private static native void setDragText(long id, string text);
+    public void setDragText(string text) {
+        setDragText(this.id, text);
+    }
+
+    private static native void onDropListener(long id, object action);
+    public void onDropListener(object action) {
+        onDropListener(this.id, action);
+    }
+
+    public void setPadding(int padding) {
+        setPadding(
+            this.id,
+            padding,
+            padding,
+            padding,
+            padding
+        );
+    }
+}

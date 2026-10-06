@@ -1,0 +1,26 @@
+package faswer.swing.layout;
+
+import faswer.swing.Layout;
+
+public class BoxLayout implements Layout {
+    public static const int X_AXIS = 0;
+    public static const int Y_AXIS = 1;
+    public static const int LINE_AXIS = 2;
+    public static const int PAGE_AXIS = 3;
+
+    private const int axis;
+
+    public BoxLayout() {
+        this.axis = Y_AXIS;
+    }
+
+    public BoxLayout(int axis) {
+        this.axis = axis;
+    }
+
+    private static native long nativeCreateManager(long containerID, int axis);
+
+    override public long createManager(long containerID) {
+        return nativeCreateManager(containerID, this.axis);
+    }
+}

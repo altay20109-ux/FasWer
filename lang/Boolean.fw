@@ -1,0 +1,38 @@
+package faswer.lang;
+
+public const class Boolean with(boolean value) extends Object {
+    public static const boolean TRUE = true;
+    public static const boolean FALSE = false;
+
+    public boolean value() {
+        return value;
+    }
+
+    public static boolean valueOf(boolean b) {
+        return b ? true : false;
+    }
+
+    public static boolean valueOf(object value) {
+        return parseBoolean(value) ? true : false;
+    }
+
+    public static boolean parseBoolean(object value) {
+        return value != null && String.equalsIgnoreCase(value, "true");
+    }
+
+    override public string toString() {
+        return this.value ? "true" : "false";
+    }
+
+    public static string toString(boolean b) {
+        return b ? "true" : "false";
+    }
+
+    public static boolean equals(boolean a, boolean b) {
+        return a == b;
+    }
+
+    override public int hashCode() {
+        return value ? 1231 : 1237;
+    }
+}

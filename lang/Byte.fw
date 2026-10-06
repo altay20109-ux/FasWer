@@ -1,0 +1,45 @@
+package faswer.lang;
+
+import faswer.util.Math;
+
+public const class Byte with(byte value) extends Object {
+    public static const byte MIN_VALUE = -128;
+    public static const byte MAX_VALUE = 127;
+
+    public byte byteValue() {
+        return value;
+    }
+
+    public int intValue() {
+        return value;
+    }
+
+    public long longValue() {
+        return value;
+    }
+
+    public float floatValue() {
+        return value;
+    }
+
+    public double doubleValue() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Byte)) return false;
+        Byte otherByte = (Byte) other;
+        return this.value == otherByte.byteValue();
+    }
+
+    override public int hashCode() {
+        return (int) this.value;
+    }
+
+    public static native byte parseByte(object value);
+    public static native string toString(byte value);
+    override public string toString() {
+        return Byte.toString(this.value);
+    }
+    public static native Byte valueOf(object value);
+}

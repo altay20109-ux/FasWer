@@ -1,0 +1,26 @@
+package faswer.swing.dialog;
+
+public const class MessageDialog {
+    public static const int MESSAGE_INFO = 0;
+    public static const int MESSAGE_WARNING = 1;
+    public static const int MESSAGE_ERROR = 2;
+    public static const int MESSAGE_QUESTION = 3;
+    public static const int MESSAGE_PLAIN = 4;
+
+    public static const int OPTION_YES_NO = 0;
+    public static const int OPTION_OK_CANCEL = 1;
+    public static const int OPTION_YES_NO_CANCEL = 2;
+
+    public static const long RESULT_YES = 0;
+    public static const long RESULT_OK = 0;
+    public static const long RESULT_NO = 1;
+    public static const long RESULT_CANCEL = 2;
+    public static const long RESULT_CLOSED = -1L;
+
+    private MessageDialog() {}
+
+    public static native void showMessage(string message, string title, int messageType);
+    public static native long showConfirm(string message, string title, int optionType);
+    public static native string showInput(string message, string title, string initialValue);
+    public static native long showOption(string message, string title, string[] options, int defaultOption);
+}

@@ -1,0 +1,61 @@
+package faswer.swing.component;
+
+public class RadioButton extends Component {
+    public RadioButton(string text) {
+        this.id = createRadioButton(0L, text);
+    }
+
+    private static native long createRadioButton(long windowID, string text);
+
+    public static native long createGroup();
+
+    private static native void addToGroup(long groupId, long id);
+    public void addToGroup(long groupId) {
+        addToGroup(groupId, this.id);
+    }
+
+    private static native void setText(long id, string text);
+    public void setText(string text) {
+        setText(this.id, text);
+    }
+
+    private static native string getText(long id);
+    public string getText() {
+        return getText(this.id);
+    }
+
+    private static native void setSelected(long id, boolean selected);
+    public void setSelected(boolean selected) {
+        setSelected(this.id, selected);
+    }
+
+    private static native boolean isSelected(long id);
+    public boolean isSelected() {
+        return isSelected(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

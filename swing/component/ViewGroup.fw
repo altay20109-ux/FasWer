@@ -1,0 +1,33 @@
+package faswer.swing.component;
+
+import faswer.swing.Layout;
+
+public class ViewGroup extends Component {
+    public ViewGroup(Layout layout) {
+        this.id = createViewGroup();
+        setLayout(this.id, layout.createManager(this.id));
+    }
+
+    private static native long createViewGroup();
+    private static native void setLayout(long containerID, long layoutManagerID);
+
+    private static native void add(long id, long componentID);
+    public void add(Component c) {
+        add(this.id, c.getComponent());
+    }
+
+    private static native void place(long id, long componentID, string point);
+    public void place(Component c, string point) {
+        place(this.id, c.getComponent(), point);
+    }
+
+    private static native void remove(long id, long componentID);
+    public void remove(long componentID) {
+        remove(this.id, componentID);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

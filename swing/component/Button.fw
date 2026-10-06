@@ -1,0 +1,53 @@
+package faswer.swing.component;
+
+public class Button extends Component {
+    public Button(string text) {
+        this.id = createButton(0L, text);
+    }
+
+    private static native long createButton(long windowID, string text);
+
+    private static native void setText(long id, string text);
+    public void setText(string text) {
+        setText(this.id, text);
+    }
+
+    private static native string getText(long id);
+    public string getText() {
+        return getText(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void click(long id);
+    public void click() {
+        click(this.id);
+    }
+
+    private static native void onClick(long id, object action);
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+    public void onClick(object action) {
+        onClick(this.id, action);
+    }
+}

@@ -1,0 +1,11 @@
+package faswer.swing.layout;
+
+import faswer.swing.Layout;
+
+public class GridBagLayout implements Layout {
+    private static native long nativeCreateManager();
+
+    override public long createManager(long containerID) {
+        return nativeCreateManager();
+    }
+}

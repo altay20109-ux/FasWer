@@ -1,0 +1,69 @@
+package faswer.swing.component;
+
+public class Slider extends Component {
+    public Slider(int min, int max, int value) {
+        this.id = createSlider(0L, min, max, value);
+    }
+
+    private static native long createSlider(long windowID, int min, int max, int value);
+
+    private static native void setValue(long id, int value);
+    public void setValue(int value) {
+        setValue(this.id, value);
+    }
+
+    private static native int getValue(long id);
+    public int getValue() {
+        return getValue(this.id);
+    }
+
+    private static native void setMinimum(long id, int min);
+    public void setMinimum(int min) {
+        setMinimum(this.id, min);
+    }
+
+    private static native void setMaximum(long id, int max);
+    public void setMaximum(int max) {
+        setMaximum(this.id, max);
+    }
+
+    private static native void setMajorTickSpacing(long id, int spacing);
+    public void setMajorTickSpacing(int spacing) {
+        setMajorTickSpacing(this.id, spacing);
+    }
+
+    private static native void setPaintTicks(long id, boolean paint);
+    public void setPaintTicks(boolean paint) {
+        setPaintTicks(this.id, paint);
+    }
+
+    private static native void setPaintLabels(long id, boolean paint);
+    public void setPaintLabels(boolean paint) {
+        setPaintLabels(this.id, paint);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

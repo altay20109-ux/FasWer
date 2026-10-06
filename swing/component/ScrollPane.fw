@@ -1,0 +1,48 @@
+package faswer.swing.component;
+
+public class ScrollPane extends Component {
+    public ScrollPane(Component view) {
+        this.id = createScrollPane(0L, view.getComponent());
+    }
+
+    public ScrollPane() {
+        this.id = createScrollPane(0L, 0L);
+    }
+
+    private static native long createScrollPane(long windowID, long viewId);
+
+    private static native void setViewportView(long id, long viewId);
+    public void setViewportView(Component view) {
+        setViewportView(this.id, view.getComponent());
+    }
+
+    private static native void setHorizontalScrollBarPolicy(long id, int policy);
+    public void setHorizontalScrollBarPolicy(int policy) {
+        setHorizontalScrollBarPolicy(this.id, policy);
+    }
+
+    private static native void setVerticalScrollBarPolicy(long id, int policy);
+    public void setVerticalScrollBarPolicy(int policy) {
+        setVerticalScrollBarPolicy(this.id, policy);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+}

@@ -1,0 +1,59 @@
+package faswer.swing.component;
+
+public class ProgressBar extends Component {
+    public ProgressBar(int min, int max) {
+        this.id = createProgressBar(0L, min, max);
+    }
+
+    private static native long createProgressBar(long windowID, int min, int max);
+
+    private static native void setValue(long id, int value);
+    public void setValue(int value) {
+        setValue(this.id, value);
+    }
+
+    private static native int getValue(long id);
+    public int getValue() {
+        return getValue(this.id);
+    }
+
+    private static native void setMinimum(long id, int min);
+    public void setMinimum(int min) {
+        setMinimum(this.id, min);
+    }
+
+    private static native void setMaximum(long id, int max);
+    public void setMaximum(int max) {
+        setMaximum(this.id, max);
+    }
+
+    private static native void setStringPainted(long id, boolean painted);
+    public void setStringPainted(boolean painted) {
+        setStringPainted(this.id, painted);
+    }
+
+    private static native void setIndeterminate(long id, boolean indeterminate);
+    public void setIndeterminate(boolean indeterminate) {
+        setIndeterminate(this.id, indeterminate);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+}

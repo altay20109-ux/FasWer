@@ -1,0 +1,22 @@
+package faswer.swing.layout;
+
+import faswer.swing.Layout;
+
+public class BorderLayout implements Layout {
+    private static native long nativeCreateManager();
+
+    public static const string NORTH = "North";
+    public static const string SOUTH = "South";
+    public static const string EAST = "East";
+    public static const string WEST = "West";
+    public static const string CENTER = "Center";
+
+    public static const string PAGE_START = "First";
+    public static const string PAGE_END = "Last";
+    public static const string LINE_START = "Before";
+    public static const string LINE_END = "After";
+
+    override public long createManager(long containerID) {
+        return nativeCreateManager();
+    }
+}

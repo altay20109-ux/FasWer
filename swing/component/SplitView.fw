@@ -1,0 +1,47 @@
+package faswer.swing.component;
+
+public class SplitView extends Component {
+    public static const int HORIZONTAL = 0;
+    public static const int VERTICAL = 1;
+
+    public SplitView(int orientation, Component first, Component second) {
+        this.id = createSplitView(orientation, first.getComponent(), second.getComponent());
+    }
+
+    private static native long createSplitView(int orientation, long firstID, long secondID);
+
+    private static native void setDividerLocation(long id, int location);
+    public void setDividerLocation(int location) {
+        setDividerLocation(this.id, location);
+    }
+
+    private static native int getDividerLocation(long id);
+    public int getDividerLocation() {
+        return getDividerLocation(this.id);
+    }
+
+    private static native void setDividerSize(long id, int size);
+    public void setDividerSize(int size) {
+        setDividerSize(this.id, size);
+    }
+
+    private static native void setResizeWeight(long id, double weight);
+    public void setResizeWeight(double weight) {
+        setResizeWeight(this.id, weight);
+    }
+
+    private static native void setOneTouchExpandable(long id, boolean expandable);
+    public void setOneTouchExpandable(boolean expandable) {
+        setOneTouchExpandable(this.id, expandable);
+    }
+
+    private static native void setContinuousLayout(long id, boolean continuous);
+    public void setContinuousLayout(boolean continuous) {
+        setContinuousLayout(this.id, continuous);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

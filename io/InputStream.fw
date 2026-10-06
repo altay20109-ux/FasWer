@@ -1,0 +1,27 @@
+package faswer.io;
+
+public class InputStream {
+    protected long handle;
+
+    protected InputStream() {}
+
+    protected static native int readByte(long handle);
+    protected static native int readAvailable(long handle);
+    protected static native void closeHandle(long handle);
+
+    public int read() {
+        return readByte(this.handle);
+    }
+
+    public int available() {
+        return readAvailable(this.handle);
+    }
+
+    public void close() {
+        closeHandle(this.handle);
+    }
+
+    public long getHandle() {
+        return this.handle;
+    }
+}

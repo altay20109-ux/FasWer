@@ -1,0 +1,25 @@
+package faswer.net;
+
+public const class HttpResponse {
+    private long handle;
+
+    public HttpResponse(long handle) {
+        this.handle = handle;
+    }
+
+    private static native int statusCodeOf(long handle);
+    private static native string bodyOf(long handle);
+    private static native string headerOf(long handle, string name);
+
+    public int statusCode() {
+        return statusCodeOf(this.handle);
+    }
+
+    public string body() {
+        return bodyOf(this.handle);
+    }
+
+    public string getHeader(string name) {
+        return headerOf(this.handle, name);
+    }
+}

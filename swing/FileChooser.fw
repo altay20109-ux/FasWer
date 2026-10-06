@@ -1,0 +1,10 @@
+package faswer.swing;
+
+public class FileChooser {
+    public FileChooser() {}
+
+    public static native string openFileDialog(string title, string extensionFilter);
+    public static native string saveFileDialog(string title, string extensionFilter);
+    public static native string[] openMultipleFilesDialog(string title, string extensionFilter);
+    public static native string openDirectoryDialog(string title);
+}

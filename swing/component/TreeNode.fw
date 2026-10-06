@@ -1,0 +1,50 @@
+package faswer.swing.component;
+
+public class TreeNode {
+    protected long node;
+
+    public TreeNode(string text) {
+        this.node = createNode(text);
+    }
+
+    private static native long createNode(string text);
+
+    private static native void addChild(long nodeID, long childID);
+    public void addChild(TreeNode child) {
+        addChild(this.node, child.getNodeID());
+    }
+
+    private static native void removeChild(long nodeID, long childID);
+    public void removeChild(TreeNode child) {
+        removeChild(this.node, child.getNodeID());
+    }
+
+    private static native int getChildCount(long nodeID);
+    public int getChildCount() {
+        return getChildCount(this.node);
+    }
+
+    private static native string getText(long nodeID);
+    public string getText() {
+        return getText(this.node);
+    }
+
+    private static native void setText(long nodeID, string text);
+    public void setText(string text) {
+        setText(this.node, text);
+    }
+
+    private static native boolean isLeaf(long nodeID);
+    public boolean isLeaf() {
+        return isLeaf(this.node);
+    }
+
+    private static native string getParentText(long nodeID);
+    public string getParentText() {
+        return getParentText(this.node);
+    }
+
+    public long getNodeID() {
+        return this.node;
+    }
+}

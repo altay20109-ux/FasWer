@@ -1,0 +1,11 @@
+package faswer.swing;
+
+public const class LookAndFeel {
+    private LookAndFeel() {}
+
+    public static native void installDarkLookAndFeel();
+    public static native void installDarculaLookAndFeel();
+    public static native void setAccentColor(int r, int g, int b);
+    public static native boolean isDark();
+    public static native void setDefaultFont(string family, int size);
+}

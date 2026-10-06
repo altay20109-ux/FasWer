@@ -1,0 +1,34 @@
+package faswer.lang;
+
+public const class Class extends Object {
+    private string name;
+
+    public Class(string name) {
+        this.name = name;
+    }
+
+    public string getName() {
+        return name;
+    }
+
+    public string getSimpleName() {
+        return String.substring(name, String.lastIndexOf(name, ".") + 1);
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Class)) return false;
+        Class otherClass = (Class) other;
+        return String.equals(this.name, otherClass.getName());
+    }
+
+    override public int hashCode() {
+        return String.hashCode(name);
+    }
+
+    override public string toString() {
+        return "class " + name;
+    }
+
+    public static native Class getClass(object o);
+    public static native Class getGeneratedName(object o);
+}

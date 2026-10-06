@@ -1,0 +1,24 @@
+package faswer.swing.layout;
+
+import faswer.swing.Layout;
+
+public class GridLayout implements Layout {
+    private const int rows;
+    private const int cols;
+
+    public GridLayout() {
+        this.rows = 0;
+        this.cols = 1;
+    }
+
+    public GridLayout(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+    }
+
+    private static native long nativeCreateManager(int rows, int cols);
+
+    override public long createManager(long containerID) {
+        return nativeCreateManager(this.rows, this.cols);
+    }
+}

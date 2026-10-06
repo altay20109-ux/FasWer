@@ -1,0 +1,69 @@
+package faswer.swing.component;
+
+public class ListView extends Component {
+    public ListView() {
+        this.id = createListView(0L);
+    }
+
+    private static native long createListView(long windowID);
+
+    private static native void addItem(long id, string item);
+    public void addItem(string item) {
+        addItem(this.id, item);
+    }
+
+    private static native void removeItemAt(long id, int index);
+    public void removeItemAt(int index) {
+        removeItemAt(this.id, index);
+    }
+
+    private static native void clear(long id);
+    public void clear() {
+        clear(this.id);
+    }
+
+    private static native string getSelectedValue(long id);
+    public string getSelectedValue() {
+        return getSelectedValue(this.id);
+    }
+
+    private static native int getSelectedIndex(long id);
+    public int getSelectedIndex() {
+        return getSelectedIndex(this.id);
+    }
+
+    private static native void setSelectedIndex(long id, int index);
+    public void setSelectedIndex(int index) {
+        setSelectedIndex(this.id, index);
+    }
+
+    private static native int getItemCount(long id);
+    public int getItemCount() {
+        return getItemCount(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

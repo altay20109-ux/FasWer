@@ -1,0 +1,31 @@
+package faswer.net;
+
+public const class ServerSocket {
+    private long handle;
+
+    public ServerSocket(int port) {
+        this.handle = bind(port);
+    }
+
+    private static native long bind(int port);
+    private static native long acceptOf(long handle);
+    private static native void closeOf(long handle);
+    private static native boolean isClosedOf(long handle);
+    private static native int getLocalPortOf(long handle);
+
+    public Socket accept() {
+        return Socket.fromHandle(acceptOf(this.handle));
+    }
+
+    public void close() {
+        closeOf(this.handle);
+    }
+
+    public boolean isClosed() {
+        return isClosedOf(this.handle);
+    }
+
+    public int getLocalPort() {
+        return getLocalPortOf(this.handle);
+    }
+}

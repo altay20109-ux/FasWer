@@ -1,0 +1,5 @@
+package faswer.swing;
+
+public interface Layout {
+    public long createManager(long containerID);
+}

@@ -1,0 +1,45 @@
+package faswer.swing.component;
+
+public class ButtonGroup {
+    private long id;
+
+    public ButtonGroup() {
+        this.id = createButtonGroup();
+    }
+
+    private static native long createButtonGroup();
+
+    private static native void add(long id, long buttonID);
+    public void add(Component button) {
+        add(this.id, button.getComponent());
+    }
+
+    private static native void remove(long id, long buttonID);
+    public void remove(Component button) {
+        remove(this.id, button.getComponent());
+    }
+
+    private static native void clearSelection(long id);
+    public void clearSelection() {
+        clearSelection(this.id);
+    }
+
+    private static native long getSelectedId(long id);
+    public long getSelectedId() {
+        return getSelectedId(this.id);
+    }
+
+    private static native int getButtonCount(long id);
+    public int getButtonCount() {
+        return getButtonCount(this.id);
+    }
+
+    private static native boolean isSelected(long groupID, long buttonID);
+    public boolean isSelected(Component button) {
+        return isSelected(this.id, button.getComponent());
+    }
+
+    public long getButtonGroupID() {
+        return this.id;
+    }
+}

@@ -1,0 +1,23 @@
+package faswer.lang;
+
+public class Object with(object value) {
+    private static native string toString(object o);
+
+    public string toString() {
+        return toString(this.value);
+    }
+
+    public static native boolean equals(object left, object right);
+
+    public int hashCode() {
+        return hashCode(this.value);
+    }
+
+    public static native int hashCode(object o);
+
+    public static native void notify(object o);
+    public static native void notifyAll(object o);
+    public static native void wait(object o);
+    public static native void wait(object o, long timeout);
+    public static native void wait(object o, long timeout, int nanos);
+}

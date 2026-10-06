@@ -1,0 +1,20 @@
+package faswer.swing;
+
+public class CheckBoxMenuItem extends MenuItem {
+    public CheckBoxMenuItem(string label) {
+        super(label);
+        this.id = createMenuItem(label);
+    }
+
+    private static native long createMenuItem(string label);
+
+    private static native void setChecked(long id, boolean checked);
+    public void setChecked(boolean checked) {
+        setChecked(this.id, checked);
+    }
+
+    private static native boolean isChecked(long id);
+    public boolean isChecked() {
+        return isChecked(this.id);
+    }
+}

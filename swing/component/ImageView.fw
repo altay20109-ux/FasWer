@@ -1,0 +1,64 @@
+package faswer.swing.component;
+
+public class ImageView extends Component {
+    public ImageView(string path) {
+        this.id = createImageView(0L, path);
+    }
+
+    private static native long createImageView(long windowID, string path);
+
+    private static native void setImage(long id, string path);
+    public void setImage(string path) {
+        setImage(this.id, path);
+    }
+
+    private static native void loadFromUrl(long id, string url);
+    public void loadFromUrl(string url) {
+        loadFromUrl(this.id, url);
+    }
+
+    private static native void setScale(long id, int width, int height);
+    public void setScale(int width, int height) {
+        setScale(this.id, width, height);
+    }
+
+    private static native void clear(long id);
+    public void clear() {
+        clear(this.id);
+    }
+
+    private static native int getWidth(long id);
+    public int getWidth() {
+        return getWidth(this.id);
+    }
+
+    private static native int getHeight(long id);
+    public int getHeight() {
+        return getHeight(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+
+    private static native void onClickListener(long id, object action);
+    public void onClickListener(object action) {
+        onClickListener(this.id, action);
+    }
+}

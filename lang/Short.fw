@@ -1,0 +1,46 @@
+package faswer.lang;
+
+public const class Short with(short value) extends Object {
+    public static const short MIN_VALUE = (short) -32768;
+    public static const short MAX_VALUE = (short) 32767;
+
+    private static int clamp(short value) {
+        int truncated = value % 65536;
+        if (truncated > MAX_VALUE) truncated -= 65536;
+        if (truncated < MIN_VALUE) truncated += 65536;
+        return truncated;
+    }
+
+    public int intValue() {
+        return value;
+    }
+
+    public long longValue() {
+        return value;
+    }
+
+    public float floatValue() {
+        return value;
+    }
+
+    public double doubleValue() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Short)) return false;
+        Short otherShort = (Short) other;
+        return this.value == otherShort.intValue();
+    }
+
+    override public int hashCode() {
+        return this.value;
+    }
+
+    public static native short parseShort(object value);
+    public static native string toString(int value);
+    override public string toString() {
+        return Short.toString(this.value);
+    }
+    public static native short valueOf(object value);
+}

@@ -1,0 +1,7 @@
+package faswer.exception;
+
+public const class ClassCastException extends Exception {
+    public ClassCastException(string message) {
+        super("ClassCastException: " + message);
+    }
+}

@@ -1,0 +1,56 @@
+package faswer.lang;
+
+public const class System {
+    public static native string[] getArgs();
+
+    public static native void print(object o);
+    public static native void print(int i);
+    public static native void print(float f);
+    public static native void print(double db);
+    public static native void print(long ln);
+    public static native void print(byte b);
+    public static native void print(char c);
+    public static native void print(boolean b);
+    public static native void print(string s);
+
+    public static native void println(object o);
+    public static native void println(object[] o);
+    public static native void println(int i);
+    public static native void println(float f);
+    public static native void println(double db);
+    public static native void println(long ln);
+    public static native void println(byte b);
+    public static native void println(char c);
+    public static native void println(boolean b);
+    public static native void println(string s);
+
+    public static native void printErr(object o);
+    public static native void printErr(int i);
+    public static native void printErr(float f);
+    public static native void printErr(double db);
+    public static native void printErr(long ln);
+    public static native void printErr(byte b);
+    public static native void printErr(char c);
+    public static native void printErr(boolean b);
+    public static native void printErr(string s);
+
+    public static native void printlnErr(object o);
+    public static native void printlnErr(int i);
+    public static native void printlnErr(float f);
+    public static native void printlnErr(double db);
+    public static native void printlnErr(long ln);
+    public static native void printlnErr(byte b);
+    public static native void printlnErr(char c);
+    public static native void printlnErr(boolean b);
+    public static native void printlnErr(string s);
+
+    public static native string read();
+    public static native string readLine();
+
+    public static native long nanoTime();
+    public static native int identityHashCode(object o);
+
+    public static native void exit(int exitStatus);
+
+    public static native void invokeLater(object action);
+}

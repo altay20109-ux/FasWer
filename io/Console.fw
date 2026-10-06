@@ -1,0 +1,17 @@
+package faswer.io;
+
+public sealed class Console permits SystemConsole {
+    protected Console() {}
+
+    public native string readLine();
+    public native string readLine(string prompt);
+    public native string readPassword();
+    public native string readPassword(string prompt);
+    public native void write(string text);
+    public native void writeLine(string text);
+    public native void flush();
+
+    public static Console getInstance() {
+        return new SystemConsole();
+    }
+}

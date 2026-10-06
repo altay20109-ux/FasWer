@@ -1,0 +1,23 @@
+package faswer.exception;
+
+import faswer.lang.Object;
+
+public class Exception extends Object {
+    private string message;
+
+    public Exception() {
+        this.message = "";
+    }
+
+    public Exception(string message) {
+        this.message = message;
+    }
+
+    public string getMessage() {
+        return message;
+    }
+
+    override public string toString() {
+        return "[FasWer Exception] " + message;
+    }
+}

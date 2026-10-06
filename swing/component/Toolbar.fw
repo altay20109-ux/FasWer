@@ -1,0 +1,54 @@
+package faswer.swing.component;
+
+public class Toolbar extends Component {
+    public Toolbar() {
+        this.id = createToolbar(0L);
+    }
+
+    private static native long createToolbar(long windowID);
+
+    private static native void add(long id, long componentID);
+    public void add(Component c) {
+        add(this.id, c.getComponent());
+    }
+
+    private static native void remove(long id, long componentID);
+    public void remove(Component c) {
+        remove(this.id, c.getComponent());
+    }
+
+    private static native void addSeparator(long id);
+    public void addSeparator() {
+        addSeparator(this.id);
+    }
+
+    private static native void setFloatable(long id, boolean floatable);
+    public void setFloatable(boolean floatable) {
+        setFloatable(this.id, floatable);
+    }
+
+    private static native boolean isFloatable(long id);
+    public boolean isFloatable() {
+        return isFloatable(this.id);
+    }
+
+    private static native void setOrientation(long id, int orientation);
+    public void setOrientation(int orientation) {
+        setOrientation(this.id, orientation);
+    }
+
+    private static native int getComponentCount(long id);
+    public int getComponentCount() {
+        return getComponentCount(this.id);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+}

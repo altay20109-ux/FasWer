@@ -1,0 +1,37 @@
+package faswer.lang;
+
+public const class Double with(double value) extends Object {
+    public double doubleValue() {
+        return value;
+    }
+
+    public float floatValue() {
+        return (float) value;
+    }
+
+    public long longValue() {
+        return (long) value;
+    }
+
+    public int intValue() {
+        return (int) value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Double)) return false;
+        Double otherDouble = (Double) other;
+        return this.value == otherDouble.doubleValue();
+    }
+
+    override public int hashCode() {
+        return String.hashCode(toString(this.value));
+    }
+
+    public static native double parseDouble(object o);
+    public static native string toString(double value);
+    public static native Double valueOf(double value);
+    public static native Double valueOf(string s);
+    public static native boolean isNaN(double value);
+    public static native boolean isInfinite(double value);
+    public static native int compare(double left, double right);
+}

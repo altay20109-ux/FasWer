@@ -1,0 +1,7 @@
+package faswer.exception;
+
+public const class NullPointerException extends Exception {
+    public NullPointerException(string message) {
+        super("NullPointerException: " + message);
+    }
+}

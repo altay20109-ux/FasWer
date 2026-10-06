@@ -1,0 +1,49 @@
+package faswer.net;
+
+public const class Socket {
+    private long handle;
+
+    public Socket(string host, int port) {
+        this.handle = connect(host, port);
+    }
+
+    private Socket(long handle) {
+        this.handle = handle;
+    }
+
+    private static native long connect(string host, int port);
+    private static native void writeLineOf(long handle, string line);
+    private static native string readLineOf(long handle);
+    private static native void closeOf(long handle);
+    private static native boolean isClosedOf(long handle);
+    private static native string remoteAddressOf(long handle);
+    private static native int remotePortOf(long handle);
+
+    public static Socket fromHandle(long handle) {
+        return new Socket(handle);
+    }
+
+    public void writeLine(string line) {
+        writeLineOf(this.handle, line);
+    }
+
+    public string readLine() {
+        return readLineOf(this.handle);
+    }
+
+    public void close() {
+        closeOf(this.handle);
+    }
+
+    public boolean isClosed() {
+        return isClosedOf(this.handle);
+    }
+
+    public string getRemoteAddress() {
+        return remoteAddressOf(this.handle);
+    }
+
+    public int getRemotePort() {
+        return remotePortOf(this.handle);
+    }
+}

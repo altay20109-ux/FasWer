@@ -1,0 +1,9 @@
+package faswer.swing;
+
+public const class Clipboard {
+    private Clipboard() {}
+
+    public static native string getText();
+    public static native void setText(string text);
+    public static native void clear();
+}

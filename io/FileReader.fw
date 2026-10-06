@@ -1,0 +1,14 @@
+package faswer.io;
+
+public const class FileReader extends Reader {
+    public FileReader(string path) {
+        this.handle = openFile(path);
+    }
+
+    private static native long openFile(string path);
+    private static native string readLineOf(long handle);
+
+    public string readLine() {
+        return readLineOf(this.handle);
+    }
+}

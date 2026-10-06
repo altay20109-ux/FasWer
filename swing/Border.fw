@@ -1,0 +1,44 @@
+package faswer.swing;
+
+public const class Border {
+    private long handle;
+
+    private Border(long handle) {
+        this.handle = handle;
+    }
+
+    private static native long createLineBorder(int red, int green, int blue, int thickness);
+    private static native long createEmptyBorder(int top, int right, int bottom, int left);
+    private static native long createTitledBorder(string title);
+    private static native long createEtchedBorder();
+    private static native long createRaisedBevelBorder();
+    private static native long createLoweredBevelBorder();
+
+    public static Border line(Color color, int thickness) {
+        return new Border(createLineBorder(color.getRed(), color.getGreen(), color.getBlue(), thickness));
+    }
+
+    public static Border empty(int top, int right, int bottom, int left) {
+        return new Border(createEmptyBorder(top, right, bottom, left));
+    }
+
+    public static Border titled(string title) {
+        return new Border(createTitledBorder(title));
+    }
+
+    public static Border etched() {
+        return new Border(createEtchedBorder());
+    }
+
+    public static Border raisedBevel() {
+        return new Border(createRaisedBevelBorder());
+    }
+
+    public static Border loweredBevel() {
+        return new Border(createLoweredBevelBorder());
+    }
+
+    public long getHandle() {
+        return this.handle;
+    }
+}

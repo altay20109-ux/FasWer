@@ -1,0 +1,25 @@
+package faswer.swing;
+
+public class Menu extends MenuItem {
+    public Menu(string label) {
+        super(label);
+        this.id = createMenu(label);
+    }
+
+    private static native long createMenu(string label);
+
+    private static native void addItem(long id, long itemID);
+    public void addItem(MenuItem item) {
+        addItem(this.id, item.getMenuItemID());
+    }
+
+    private static native void removeItem(long id, long itemID);
+    public void removeItem(MenuItem item) {
+        removeItem(this.id, item.getMenuItemID());
+    }
+
+    private static native void addSeparator(long id);
+    public void addSeparator() {
+        addSeparator(this.id);
+    }
+}

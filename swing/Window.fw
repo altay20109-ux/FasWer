@@ -1,0 +1,126 @@
+package faswer.swing;
+
+import faswer.swing.component.Component;
+
+public const class Window {
+    private const long id = createWindow();
+
+    public Window(string title, int width, int height) {
+        this.setTitle(title);
+        this.setWidth(width);
+        this.setHeight(height);
+    }
+
+    private static native long createWindow();
+
+    private static native void setTitle(long id, string title);
+    public void setTitle(string title) {
+        setTitle(this.id, title);
+    }
+
+    private static native void setWidth(long id, int width);
+    public void setWidth(int width) {
+        setWidth(this.id, width);
+    }
+
+    private static native void setHeight(long id, int height);
+    public void setHeight(int height) {
+        setHeight(this.id, height);
+    }
+
+    private static native void show(long id);
+    public void show() {
+        show(this.id);
+    }
+
+    private static native void dismiss(long id);
+    public void dismiss() {
+        dismiss(this.id);
+    }
+
+    private static native void close(long id);
+    public void close() {
+        close(this.id);
+    }
+
+    private static native void add(long id, long componentID);
+    public void add(Component c) {
+                add(this.id, c.getComponent());
+    }
+
+    private static native void place(long id, long componentID, string point);
+    public void place(Component c, string point) {
+        place(this.id, c.getComponent(), point);
+    }
+
+    public void place(string point, Component c) {
+        place(this.id, c.getComponent(), point);
+    }
+
+    private static native void remove(long id, long componentID);
+    public void remove(Component c) {
+        remove(this.id, c.getComponent());
+    }
+
+    private static native void setLayout(long id, string layout);
+    public void setLayout(string layout) {
+        setLayout(this.id, layout);
+    }
+
+    private static native void setResizable(long id, boolean resizable);
+    public void setResizable(boolean resizable) {
+        setResizable(this.id, resizable);
+    }
+
+    private static native boolean isShowing(long id);
+    public boolean isShowing() {
+        return isShowing(this.id);
+    }
+
+    private static native boolean isClosed(long id);
+    public boolean isClosed() {
+        return isClosed(this.id);
+    }
+
+    private static native int getWidth(long id);
+    public int getWidth() {
+        return getWidth(this.id);
+    }
+
+    private static native int getHeight(long id);
+    public int getHeight() {
+        return getHeight(this.id);
+    }
+
+    private static native string getTitle(long id);
+    public string getTitle() {
+        return getTitle(this.id);
+    }
+
+    private static native void setX(long id, int x);
+    public void setX(int x) {
+        setX(this.id, x);
+    }
+
+    private static native void setY(long id, int y);
+    public void setY(int y) {
+        setY(this.id, y);
+    }
+
+    private static native void center(long id);
+    public void center() {
+        center(this.id);
+    }
+
+    private static native void setMenuBar(long id, long menuBarID);
+    public void setMenuBar(MenuBar bar) {
+        setMenuBar(this.id, bar.getMenuBarID());
+    }
+
+    private static native void removeMenuBar(long id);
+    public void removeMenuBar() {
+        removeMenuBar(this.id);
+    }
+
+    public long getWindowID() { return this.id; }
+}

@@ -1,0 +1,24 @@
+package faswer.swing;
+
+public const class Font {
+    public static const int PLAIN = 0;
+    public static const int BOLD = 1;
+    public static const int ITALIC = 2;
+    public static const int BOLD_ITALIC = 3;
+
+    public static const string DEFAULT = "SansSerif";
+    public static const string MONOSPACE = "Monospaced";
+    public static const string SERIF = "Serif";
+    public static const string SANS_SERIF = "SansSerif";
+
+    private Font() {}
+
+    public static native long create(string name, int style, int size);
+    public static native long createDefault(int size);
+    public static native long createMonospace(int size);
+    public static native long createBold(string name, int size);
+    public static native long createItalic(string name, int size);
+
+    public static native boolean exists(string name);
+    public static native string[] getAvailableFonts();
+}

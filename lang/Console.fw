@@ -1,0 +1,11 @@
+package faswer.lang;
+
+public const class Console {
+    public static native string readLine();
+    public static native string readLine(string prompt);
+    public static native string readPassword();
+    public static native string readPassword(string prompt);
+    public static native void write(string text);
+    public static native void writeLine(string text);
+    public static native void flush();
+}

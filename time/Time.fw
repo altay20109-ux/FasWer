@@ -1,0 +1,64 @@
+package faswer.time;
+
+import faswer.lang.Object;
+
+public class Time extends Object {
+    private long millisOfDay;
+
+    public Time(int hour, int minute, int second) {
+        this.millisOfDay = ofHMS(hour, minute, second);
+    }
+
+    private Time(long millisOfDay) {
+        this.millisOfDay = millisOfDay;
+    }
+
+    private static native long nowMillisOfDay();
+    private static native long ofHMS(int hour, int minute, int second);
+    private static native int hourOf(long millisOfDay);
+    private static native int minuteOf(long millisOfDay);
+    private static native int secondOf(long millisOfDay);
+    private static native string format(long millisOfDay, string pattern);
+
+    public static Time now() {
+        return new Time(nowMillisOfDay());
+    }
+
+    public int getHour() {
+        return hourOf(millisOfDay);
+    }
+
+    public int getMinute() {
+        return minuteOf(millisOfDay);
+    }
+
+    public int getSecond() {
+        return secondOf(millisOfDay);
+    }
+
+    public long toMillisOfDay() {
+        return millisOfDay;
+    }
+
+    public boolean isBefore(Time other) {
+        return this.millisOfDay < other.toMillisOfDay();
+    }
+
+    public boolean isAfter(Time other) {
+        return this.millisOfDay > other.toMillisOfDay();
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Time)) return false;
+        Time otherTime = (Time) other;
+        return this.millisOfDay == otherTime.toMillisOfDay();
+    }
+
+    public string format(string pattern) {
+        return format(millisOfDay, pattern);
+    }
+
+    override public string toString() {
+        return format("HH:mm:ss");
+    }
+}

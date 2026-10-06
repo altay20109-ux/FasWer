@@ -1,0 +1,104 @@
+package faswer.swing.component;
+
+public class Tree extends Component {
+    public Tree() {
+        this.id = createTree(0L);
+    }
+
+    private static native long createTree(long windowID);
+
+    private static native void setRoot(long id, long rootID);
+    public void setRoot(TreeNode root) {
+        setRoot(this.id, root.getNodeID());
+    }
+
+    private static native string getRootText(long id);
+    public string getRootText() {
+        return getRootText(this.id);
+    }
+
+    private static native string getSelectedValue(long id);
+    public string getSelectedValue() {
+        return getSelectedValue(this.id);
+    }
+
+    private static native string getSelectedPath(long id);
+    public string getSelectedPath() {
+        return getSelectedPath(this.id);
+    }
+
+    private static native int getSelectedRow(long id);
+    public int getSelectedRow() {
+        return getSelectedRow(this.id);
+    }
+
+    private static native void clearSelection(long id);
+    public void clearSelection() {
+        clearSelection(this.id);
+    }
+
+    private static native void setSelectionRow(long id, int row);
+    public void setSelectionRow(int row) {
+        setSelectionRow(this.id, row);
+    }
+
+    private static native int getRowCount(long id);
+    public int getRowCount() {
+        return getRowCount(this.id);
+    }
+
+    private static native void expandRow(long id, int row);
+    public void expandRow(int row) {
+        expandRow(this.id, row);
+    }
+
+    private static native void collapseRow(long id, int row);
+    public void collapseRow(int row) {
+        collapseRow(this.id, row);
+    }
+
+    private static native void expandAll(long id);
+    public void expandAll() {
+        expandAll(this.id);
+    }
+
+    private static native void setRootVisible(long id, boolean visible);
+    public void setRootVisible(boolean visible) {
+        setRootVisible(this.id, visible);
+    }
+
+    private static native void setShowsRootHandles(long id, boolean shows);
+    public void setShowsRootHandles(boolean shows) {
+        setShowsRootHandles(this.id, shows);
+    }
+
+    private static native void setEditable(long id, boolean editable);
+    public void setEditable(boolean editable) {
+        setEditable(this.id, editable);
+    }
+
+    private static native void onSelectionListener(long id, object action);
+    public void onSelectionListener(object action) {
+        onSelectionListener(this.id, action);
+    }
+
+    private static native void setVisible(long id, boolean visible);
+    public void setVisible(boolean visible) {
+        setVisible(this.id, visible);
+    }
+
+    private static native boolean isVisible(long id);
+    public boolean isVisible() {
+        return isVisible(this.id);
+    }
+
+    private static native void setEnabled(long id, boolean enabled);
+    public void setEnabled(boolean enabled) {
+        setEnabled(this.id, enabled);
+    }
+
+    private static native boolean isEnabled(long id);
+    public boolean isEnabled() {
+        return isEnabled(this.id);
+    }
+}
