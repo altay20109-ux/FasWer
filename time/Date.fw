@@ -1,0 +1,77 @@
+package faswer.time;
+
+import faswer.lang.Object;
+
+public class Date extends Object {
+    private long epochDayMillis;
+
+    public Date(int year, int month, int day) {
+        this.epochDayMillis = ofYMD(year, month, day);
+    }
+
+    private Date(long epochDayMillis) {
+        this.epochDayMillis = epochDayMillis;
+    }
+
+    private static native long todayMillis();
+    private static native long ofYMD(int year, int month, int day);
+    private static native int yearOf(long millis);
+    private static native int monthOf(long millis);
+    private static native int dayOf(long millis);
+    private static native int dayOfWeekOf(long millis);
+    private static native string format(long millis, string pattern);
+
+    public static Date today() {
+        return new Date(todayMillis());
+    }
+
+    public int getYear() {
+        return yearOf(epochDayMillis);
+    }
+
+    public int getMonth() {
+        return monthOf(epochDayMillis);
+    }
+
+    public int getDay() {
+        return dayOf(epochDayMillis);
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeekOf(epochDayMillis);
+    }
+
+    public long toEpochMillis() {
+        return epochDayMillis;
+    }
+
+    public Date plusDays(int days) {
+        return new Date(epochDayMillis + (long) days * 86400000L);
+    }
+
+    public Date minusDays(int days) {
+        return plusDays(-days);
+    }
+
+    public boolean isBefore(Date other) {
+        return this.epochDayMillis < other.toEpochMillis();
+    }
+
+    public boolean isAfter(Date other) {
+        return this.epochDayMillis > other.toEpochMillis();
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Date)) return false;
+        Date otherDate = (Date) other;
+        return this.epochDayMillis == otherDate.toEpochMillis();
+    }
+
+    public string format(string pattern) {
+        return format(epochDayMillis, pattern);
+    }
+
+    override public string toString() {
+        return format("yyyy-MM-dd");
+    }
+}
