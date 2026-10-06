@@ -1,0 +1,61 @@
+package faswer.util;
+
+import faswer.lang.System;
+
+public const class Random {
+    private long seed;
+
+    public Random(long initialSeed) {
+        this.seed = initialSeed;
+    }
+
+    public void setSeed(long initialSeed) {
+        this.seed = initialSeed;
+    }
+
+    private int nextRaw() {
+        seed = seed * 1664525 + 1013904223;
+
+        if (seed < 0) seed = seed * -1;
+
+        int result = (int) (seed % 2147483647);
+
+        if (result == 0) return 1;
+
+        return result;
+    }
+
+    public int nextInt() {
+        return nextRaw();
+    }
+
+    public int nextInt(int max) {
+        if (max <= 0) return 0;
+
+        return nextRaw() % max;
+    }
+
+    public int nextInt(int min, int max) {
+        if (max <= min) return min;
+
+        return min + (nextRaw() % (max - min));
+    }
+
+    public long nextLong() {
+        long upper = nextRaw();
+        long lower = nextRaw();
+        return (upper * 2147483647) + lower;
+    }
+
+    public boolean nextBoolean() {
+        return (nextRaw() % 2) != 0;
+    }
+
+    public double nextDouble() {
+        return (double) nextRaw() / 2147483647.0;
+    }
+
+    public float nextFloat() {
+        return (float) nextDouble();
+    }
+}

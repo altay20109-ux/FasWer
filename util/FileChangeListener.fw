@@ -1,0 +1,7 @@
+package faswer.util;
+
+public interface FileChangeListener {
+    public void onCreate(string path);
+    public void onModify(string path);
+    public void onDelete(string path);
+}

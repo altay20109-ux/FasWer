@@ -1,0 +1,26 @@
+package faswer.util;
+
+public class File {
+    public File() {}
+
+    public static native string readAllText(string path);
+    public static native void writeAllText(string path, string text);
+    public static native void appendText(string path, string text);
+    public static native string[] readLines(string path);
+    public static native boolean exists(string path);
+    public static native boolean isDirectory(string path);
+    public static native boolean delete(string path);
+    public static native void createDirectory(string path);
+    public static native string[] listFiles(string path);
+    public static native string getName(string path);
+    public static native string getExtension(string path);
+    public static native long size(string path);
+    public static native void copy(string source, string destination);
+    public static native void move(string source, string destination);
+    public static native string getParent(string path);
+    public static native boolean isFile(string path);
+    public static native boolean isHidden(string path);
+    public static native long lastModified(string path);
+    public static native string absolutePath(string path);
+    public static native boolean createFile(string path);
+}

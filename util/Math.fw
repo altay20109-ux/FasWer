@@ -1,0 +1,97 @@
+package faswer.util;
+
+import faswer.lang.System;
+
+public const class Math {
+    public static const double PI = 3.141592653589793;
+    public static const double E = 2.718281828459045;
+
+    public static int abs(int a)  {
+        return (a <= 0) ? -a : a;
+    }
+
+    public static double abs(double a) {
+        return (a <= 0.0) ? 0.0 - a : a;
+    }
+
+    public static double max(double a, double b) {
+        return (a >= b) ? a : b;
+    }
+
+    public static double min(double a, double b) {
+        return (a <= b) ? a : b;
+    }
+
+    public static double sqrt(double x) {
+        if (x < 0) return 0;
+
+        double guess = x / 2.0;
+
+        for (int i = 0; i < 20; i++) guess = (guess + x / guess) / 2.0;
+
+        return guess;
+    }
+
+    public static double pow(double a, double b) {
+        if (b == 0) return 1;
+        if (a == 0) return 0;
+
+        boolean neg = b < 0;
+
+        double result = 1;
+
+        for (int i = 0; i < (int) b; i++) result *= a;
+
+        return neg ? 1 / result : result;
+    }
+
+    public static long round(double a) {
+        return (long) (a + 0.5);
+    }
+
+    public static double floor(double a) {
+        int i = (int) a;
+        return (a < 0 && a != i) ? i - 1 : i;
+    }
+
+    public static double ceil(double a) {
+        int i = (int) a;
+        return (a > i) ? i + 1 : i;
+    }
+
+    public static double log(double x) {
+        if (x <= 0) return 0;
+
+        double result = 0;
+        double term = (x - 1) / (x + 1);
+        double term2 = term * term;
+        double current = term;
+
+        for (int i = 1; i < 20; i += 2) {
+            result += current / i;
+            current *= term2;
+        }
+
+        return 2 * result;
+    }
+
+    public static double log10(double x) {
+        return log(x) / log(10.0);
+    }
+
+    public static double exp(double x) {
+        double sum = 1;
+        double term = 1;
+
+        for (int i = 1; i < 15; i++) {
+            term *= x / i;
+            sum += term;
+        }
+
+        return sum;
+    }
+
+    public static double random() {
+        return new Random(System.nanoTime()).nextDouble();
+    }
+}

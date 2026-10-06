@@ -1,0 +1,185 @@
+package faswer.util;
+
+import faswer.exception.IndexOutOfBoundsException;
+import faswer.lang.Object;
+
+public class LinkedList<T> extends Object implements List {
+    private Node<T, T> head;
+    private Node<T, T> tail;
+    private int size;
+
+    public LinkedList() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    override public void add(T value) {
+        addLast(value);
+    }
+
+    override public void add(int index, T value) {
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException();
+
+        if (index == size) {
+            addLast(value);
+            return;
+        }
+
+        if (index == 0) {
+            addFirst(value);
+            return;
+        }
+
+        Node<T, T> current = nodeAt(index);
+        Node<T, T> before = current.previous;
+        Node<T, T> created = new Node<>(0, value, value, current);
+        created.previous = before;
+        current.previous = created;
+        before.next = created;
+        size++;
+    }
+
+    public void addFirst(T value) {
+        Node<T, T> node = new Node<>(0, value, value, head);
+        if (head != null) head.previous = node;
+        head = node;
+        if (tail == null) tail = node;
+        size++;
+    }
+
+    public void addLast(T value) {
+        Node<T, T> node = new Node<>(0, value, value, null);
+        node.previous = tail;
+        if (tail != null) tail.next = node;
+        tail = node;
+        if (head == null) head = node;
+        size++;
+    }
+
+    override public T get(int index) {
+        return nodeAt(index).key;
+    }
+
+    override public T set(int index, T value) {
+        Node<T, T> node = nodeAt(index);
+        T old = node.value;
+        node.value = value;
+        return old;
+    }
+
+    override override public T remove(int index) {
+        Node<T, T> node = nodeAt(index);
+        unlink(node);
+        return node.key;
+    }
+
+    override public boolean removeValue(T value) {
+        Node<T, T> current = head;
+
+        while (current != null) {
+            if (Object.equals(current.key, value)) {
+                unlink(current);
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    public T removeFirst() {
+        return remove(0);
+    }
+
+    public T removeLast() {
+        return remove(size - 1);
+    }
+
+    public T peekFirst() {
+        return head == null ? null : head.key;
+    }
+
+    public T peekLast() {
+        return tail == null ? null : tail.key;
+    }
+
+    override public int size() {
+        return size;
+    }
+
+    override public boolean isEmpty() {
+        return size == 0;
+    }
+
+    override public boolean contains(T value) {
+        return indexOf(value) != -1;
+    }
+
+    override public int indexOf(T value) {
+        Node<T, T> current = head;
+        int i = 0;
+
+        while (current != null) {
+            if (Object.equals(current.key, value)) return i;
+            current = current.next;
+            i++;
+        }
+
+        return -1;
+    }
+
+    override public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    override public T[] toArray() {
+        Array<T> result = new Array<>(size == 0 ? 1 : size);
+        Node<T, T> current = head;
+
+        while (current != null) {
+            result.add(current.key);
+            current = current.next;
+        }
+
+        return result.toArray();
+    }
+
+    override public void forEach(object action) {
+        Node<T, T> current = head;
+
+        while (current != null) {
+            action(current.key);
+            current = current.next;
+        }
+    }
+
+    private Node<T, T> nodeAt(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+
+        Node<T, T> current = head;
+        for (int i = 0; i < index; i++)
+            current = current.next;
+
+        return current;
+    }
+
+    private void unlink(Node<T, T> node) {
+        if (node.previous != null) node.previous.next = node.next;
+        else head = node.next;
+
+        if (node.next != null) node.next.previous = node.previous;
+        else tail = node.previous;
+
+        size--;
+    }
+
+    override override public string toString() {
+        return Array.toString(toArray());
+    }
+}

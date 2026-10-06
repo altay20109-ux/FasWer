@@ -1,0 +1,16 @@
+package faswer.util;
+
+public class Node<K, V> {
+    public const int hash;
+    public const K key;
+    public V value;
+    public Node<K, V> next;
+    public Node<K, V> previous;
+
+    public Node(int hash, K key, V value, Node<K, V> next) {
+        this.hash = hash;
+        this.key = key;
+        this.value = value;
+        this.next = next;
+    }
+}

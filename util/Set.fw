@@ -1,0 +1,12 @@
+package faswer.util;
+
+public interface Set {
+    public boolean add(object value);
+    public boolean removeValue(object value);
+    public boolean contains(object value);
+    public int size();
+    public boolean isEmpty();
+    public void clear();
+    public object[] toArray();
+    public void forEach(object action);
+}

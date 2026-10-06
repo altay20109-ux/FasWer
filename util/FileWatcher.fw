@@ -1,0 +1,36 @@
+package faswer.util;
+
+public class FileWatcher {
+    private string path;
+    private FileChangeListener listener;
+
+    public FileWatcher(string path, FileChangeListener listener) {
+        this.path = path;
+        this.listener = listener;
+        createWatcher(this, path, listener);
+    }
+
+    public string getPath() {
+        return path;
+    }
+
+    public void start() {
+        startWatcher(this);
+    }
+
+    public void stop() {
+        stopWatcher(this);
+    }
+
+    public boolean isRunning() {
+        return isWatcherRunning(this);
+    }
+
+    private static native void createWatcher(FileWatcher watcher, string path, FileChangeListener listener);
+
+    private static native void startWatcher(FileWatcher watcher);
+
+    private static native void stopWatcher(FileWatcher watcher);
+
+    private static native boolean isWatcherRunning(FileWatcher watcher);
+}

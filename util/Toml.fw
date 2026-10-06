@@ -1,0 +1,13 @@
+package faswer.util;
+
+public const class Toml {
+    private Toml() {}
+
+    public static native long parse(string text);
+    public static native long loadFile(string path);
+    public static native string get(long id, string key);
+    public static native boolean has(long id, string key);
+    public static native string[] keys(long id);
+    public static native int size(long id);
+    public static native void release(long id);
+}

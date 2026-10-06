@@ -1,0 +1,47 @@
+package faswer.util;
+
+import faswer.lang.Object;
+
+public class Pair<A, B> extends Object {
+    private A first;
+    private B second;
+
+    public Pair(A first, B second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public static Pair<A, B> of(A first, B second) {
+        return new Pair<>(first, second);
+    }
+
+    public A getFirst() {
+        return first;
+    }
+
+    public B getSecond() {
+        return second;
+    }
+
+    public void setFirst(A first) {
+        this.first = first;
+    }
+
+    public void setSecond(B second) {
+        this.second = second;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Pair)) return false;
+        Pair otherPair = (Pair) other;
+        return Object.equals(this.first, otherPair.getFirst()) && Object.equals(this.second, otherPair.getSecond());
+    }
+
+    override public int hashCode() {
+        return Object.hashCode(first) * 31 + Object.hashCode(second);
+    }
+
+    override public string toString() {
+        return "(" + this.toString(first) + ", " + this.toString(second) + ")";
+    }
+}

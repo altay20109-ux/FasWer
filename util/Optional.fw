@@ -1,0 +1,61 @@
+package faswer.util;
+
+import faswer.exception.RuntimeException;
+import faswer.lang.Object;
+
+public class Optional<T> extends Object {
+    private T value;
+    private boolean present;
+
+    private Optional(T value, boolean present) {
+        this.value = value;
+        this.present = present;
+    }
+
+    public static Optional<T> of(T value) {
+        if (value == null)
+            throw new RuntimeException("Optional.of received a null value");
+
+        return new Optional<>(value, true);
+    }
+
+    public static Optional<T> ofNullable(T value) {
+        return new Optional<>(value, value != null);
+    }
+
+    public static Optional<T> empty() {
+        return new Optional<>(null, false);
+    }
+
+    public boolean isPresent() {
+        return present;
+    }
+
+    public boolean isEmpty() {
+        return !present;
+    }
+
+    public T get() {
+        if (!present)
+            throw new RuntimeException("No value present");
+
+        return value;
+    }
+
+    public T orElse(T other) {
+        return present ? value : other;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof Optional)) return false;
+        Optional otherOptional = (Optional) other;
+        if (this.present != otherOptional.isPresent()) return false;
+        if (!this.present) return true;
+        return Object.equals(this.value, otherOptional.get());
+    }
+
+    override public string toString() {
+        if (!present) return "Optional.empty";
+        return "Optional[" + this.toString(value) + "]";
+    }
+}

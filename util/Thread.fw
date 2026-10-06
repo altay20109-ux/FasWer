@@ -1,0 +1,42 @@
+package faswer.util;
+
+public const class Thread {
+    private object runnable;
+
+    public Thread(object runnable) {
+        this.runnable = runnable;
+        createThread(this, runnable);
+    }
+
+    public object getRunnable() {
+        return runnable;
+    }
+
+    public void start() {
+        startThread(this);
+    }
+
+    public void join() {
+        joinThread(this);
+    }
+
+    public boolean isAlive() {
+        return isThreadAlive(this);
+    }
+
+    public void interrupt() {
+        interruptThread(this);
+    }
+
+    public static native void sleep(long millis);
+
+    private static native void createThread(Thread thread, object runnable);
+
+    private static native void startThread(Thread thread);
+
+    private static native void joinThread(Thread thread);
+
+    private static native void interruptThread(Thread thread);
+
+    private static native boolean isThreadAlive(Thread thread);
+}

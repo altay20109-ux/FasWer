@@ -1,0 +1,53 @@
+package faswer.util;
+
+public class Process {
+    private long id;
+
+    public Process(string command, string workingDirectory, ProcessListener listener) {
+        this.id = start(command, workingDirectory, listener);
+    }
+
+    private static native long start(string command, string workingDirectory, ProcessListener listener);
+
+    private static native void write(long id, string text);
+    public void write(string text) {
+        write(this.id, text);
+    }
+
+    private static native void writeLine(long id, string text);
+    public void writeLine(string text) {
+        writeLine(this.id, text);
+    }
+
+    private static native boolean isAlive(long id);
+    public boolean isAlive() {
+        return isAlive(this.id);
+    }
+
+    private static native void kill(long id);
+    public void kill() {
+        kill(this.id);
+    }
+
+    private static native void killForcibly(long id);
+    public void killForcibly() {
+        killForcibly(this.id);
+    }
+
+    private static native long waitFor(long id);
+    public long waitFor() {
+        return waitFor(this.id);
+    }
+
+    private static native long exitValue(long id);
+    public long exitValue() {
+        return exitValue(this.id);
+    }
+
+    private static native void dispose(long id);
+    public void dispose() {
+        dispose(this.id);
+    }
+
+    public static native string capture(string command, string workingDirectory, long timeoutMillis);
+}

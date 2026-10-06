@@ -1,0 +1,86 @@
+package faswer.util;
+
+import faswer.exception.IndexOutOfBoundsException;
+import faswer.lang.Object;
+
+public class ArrayList<T> extends Object implements List {
+    private Array<T> data;
+
+    public ArrayList() {
+        data = new Array<>();
+    }
+
+    public ArrayList(int capacity) {
+        data = new Array<>(capacity);
+    }
+
+    override public void add(T value) {
+        data.add(value);
+    }
+
+    override public void add(int index, T value) {
+        int currentSize = data.size();
+        if (index < 0 || index > currentSize)
+            throw new IndexOutOfBoundsException();
+
+        data.add(value);
+        for (int i = currentSize; i > index; i--)
+            data.set(i, data.get(i - 1));
+
+        data.set(index, value);
+    }
+
+    override public T get(int index) {
+        return data.get(index);
+    }
+
+    override public T set(int index, T value) {
+        T old = data.get(index);
+        data.set(index, value);
+        return old;
+    }
+
+    override public T remove(int index) {
+        return data.remove(index);
+    }
+
+    override public boolean removeValue(T value) {
+        int index = data.indexOf(value);
+        if (index == -1) return false;
+
+        data.remove(index);
+        return true;
+    }
+
+    override public int size() {
+        return data.size();
+    }
+
+    override public boolean isEmpty() {
+        return data.isEmpty();
+    }
+
+    override public boolean contains(T value) {
+        return data.contains(value);
+    }
+
+    override public int indexOf(T value) {
+        return data.indexOf(value);
+    }
+
+    override public void clear() {
+        data.clear();
+    }
+
+    override public T[] toArray() {
+        return data.toArray();
+    }
+
+    override public void forEach(object action) {
+        data.forEach(action);
+    }
+
+    override public string toString() {
+        return Array.toString(data.toArray());
+    }
+}

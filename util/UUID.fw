@@ -1,0 +1,36 @@
+package faswer.util;
+
+import faswer.lang.Object;
+import faswer.lang.String;
+
+public const class UUID extends Object {
+    private string value;
+
+    private UUID(string value) {
+        this.value = value;
+    }
+
+    public static native string generateRandom();
+
+    public static UUID randomUUID() {
+        return new UUID(generateRandom());
+    }
+
+    public static UUID fromString(string value) {
+        return new UUID(value);
+    }
+
+    override public string toString() {
+        return value;
+    }
+
+    public boolean equals(object other) {
+        if (!(other instanceof UUID)) return false;
+        UUID otherUUID = (UUID) other;
+        return String.equals(this.value, otherUUID.toString());
+    }
+
+    override public int hashCode() {
+        return String.hashCode(value);
+    }
+}

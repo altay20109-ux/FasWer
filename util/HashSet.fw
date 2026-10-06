@@ -1,0 +1,177 @@
+package faswer.util;
+
+import faswer.lang.Object;
+import faswer.exception.IllegalArgumentException;
+
+public class HashSet<T> extends Object  implements Set {
+    private static const int DEFAULT_CAPACITY = 16;
+    private static const float DEFAULT_LOAD_FACTOR = 0.75f;
+
+    private Node<T, T>[] table;
+    private int size = 0;
+    private int threshold;
+    private const float loadFactor;
+
+    public HashSet() {
+        HashSet(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
+    }
+
+    public HashSet(int initialCapacity) {
+        HashSet(initialCapacity, DEFAULT_LOAD_FACTOR);
+    }
+
+    public HashSet(int initialCapacity, float loadFactor) {
+        if (initialCapacity <= 0)
+            throw new IllegalArgumentException("Illegal capacity");
+
+        if (loadFactor <= 0)
+            throw new IllegalArgumentException("Illegal load factor");
+
+        int capacity = 1;
+        while (capacity < initialCapacity)
+            capacity <<= 1;
+
+        this.loadFactor = loadFactor;
+        this.threshold = (int) (capacity * loadFactor);
+
+        table = (Node<T, T>[]) new Node[capacity];
+    }
+
+    private int hash(T value) {
+        if (value == null) return 0;
+
+        int h = Object.hashCode(value);
+        return h ^ (h >>> 16);
+    }
+
+    private int index(int hash) {
+        return hash & (Array.length(table) - 1);
+    }
+
+    override public boolean add(T value) {
+        int hash = hash(value);
+        int index = index(hash);
+
+        Node<T, T> current = table[index];
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == value || (value != null && Object.equals(value, current.key)))) {
+                return false;
+            }
+
+            current = current.next;
+        }
+
+        table[index] = new Node<>(hash, value, value, table[index]);
+        size++;
+
+        if (size >= threshold) resize();
+
+        return true;
+    }
+
+    override public boolean removeValue(T value) {
+        int hash = hash(value);
+        int index = index(hash);
+
+        Node<T, T> current = table[index];
+        Node<T, T> previous = null;
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == value || (value != null && Object.equals(value, current.key)))) {
+                if (previous == null) table[index] = current.next;
+                else previous.next = current.next;
+
+                size--;
+                return true;
+            }
+
+            previous = current;
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    override public boolean contains(T value) {
+        int hash = hash(value);
+        int index = index(hash);
+
+        Node<T, T> current = table[index];
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == value || (value != null && Object.equals(value, current.key)))) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    override public int size() {
+        return size;
+    }
+
+    override public boolean isEmpty() {
+        return size == 0;
+    }
+
+    override public void clear() {
+        table = (Node<T, T>[]) new Node[DEFAULT_CAPACITY];
+        threshold = (int) (DEFAULT_CAPACITY * loadFactor);
+        size = 0;
+    }
+
+    override public T[] toArray() {
+        Array<T> result = new Array<>(size == 0 ? 1 : size);
+
+        for (Node<T, T> bucket : table) {
+            Node<T, T> current = bucket;
+
+            while (current != null) {
+                result.add(current.key);
+                current = current.next;
+            }
+        }
+
+        return result.toArray();
+    }
+
+    override public void forEach(object action) {
+        for (Node<T, T> bucket : table) {
+            Node<T, T> current = bucket;
+
+            while (current != null) {
+                action(current.key);
+                current = current.next;
+            }
+        }
+    }
+
+    private void resize() {
+        Node<T, T>[] oldTable = table;
+        int newCapacity = Array.length(oldTable) * 2;
+
+        table = (Node<T, T>[]) new Node[newCapacity];
+        threshold = (int) (newCapacity * loadFactor);
+
+        for (Node<T, T> bucket : oldTable) {
+            while (bucket != null) {
+                Node<T, T> next = bucket.next;
+                int idx = bucket.hash & (newCapacity - 1);
+                bucket.next = table[idx];
+                table[idx] = bucket;
+                bucket = next;
+            }
+        }
+    }
+
+    override public string toString() {
+        return Array.toString(toArray());
+    }
+}

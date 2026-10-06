@@ -1,0 +1,61 @@
+package faswer.util;
+
+import faswer.exception.RuntimeException;
+
+import faswer.lang.Object;
+
+public class Queue<T> extends Object {
+    private LinkedList<T> data;
+
+    public Queue() {
+        data = new LinkedList<>();
+    }
+
+    public void offer(T value) {
+        data.addLast(value);
+    }
+
+    public void enqueue(T value) {
+        offer(value);
+    }
+
+    public T poll() {
+        if (isEmpty()) return null;
+        return data.removeFirst();
+    }
+
+    public T dequeue() {
+        if (isEmpty())
+            throw new RuntimeException("Queue is empty");
+
+        return data.removeFirst();
+    }
+
+    public T peek() {
+        return data.peekFirst();
+    }
+
+    public boolean isEmpty() {
+        return data.isEmpty();
+    }
+
+    public int size() {
+        return data.size();
+    }
+
+    public void clear() {
+        data.clear();
+    }
+
+    public boolean contains(T value) {
+        return data.contains(value);
+    }
+
+    public T[] toArray() {
+        return data.toArray();
+    }
+
+    override public string toString() {
+        return Array.toString(toArray());
+    }
+}

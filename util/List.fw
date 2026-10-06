@@ -1,0 +1,17 @@
+package faswer.util;
+
+public interface List {
+    public void add(object value);
+    public void add(int index, object value);
+    public object get(int index);
+    public object set(int index, object value);
+    public object remove(int index);
+    public boolean removeValue(object value);
+    public int size();
+    public boolean isEmpty();
+    public boolean contains(object value);
+    public int indexOf(object value);
+    public void clear();
+    public object[] toArray();
+    public void forEach(object action);
+}

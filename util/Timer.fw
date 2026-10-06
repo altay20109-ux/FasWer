@@ -1,0 +1,34 @@
+package faswer.util;
+
+public class Timer {
+    private object task;
+
+    public Timer(object task) {
+        this.task = task;
+        createTimer(this, task);
+    }
+
+    public object getTask() {
+        return task;
+    }
+
+    public void schedule(long delayMillis) {
+        scheduleTimer(this, delayMillis);
+    }
+
+    public void scheduleRepeating(long delayMillis, long periodMillis) {
+        scheduleRepeatingTimer(this, delayMillis, periodMillis);
+    }
+
+    public void cancel() {
+        cancelTimer(this);
+    }
+
+    private static native void createTimer(Timer timer, object task);
+
+    private static native void scheduleTimer(Timer timer, long delayMillis);
+
+    private static native void scheduleRepeatingTimer(Timer timer, long delayMillis, long periodMillis);
+
+    private static native void cancelTimer(Timer timer);
+}

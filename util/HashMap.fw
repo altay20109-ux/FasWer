@@ -1,0 +1,217 @@
+package faswer.util;
+
+import faswer.lang.Object;
+import faswer.lang.System;
+import faswer.lang.Array;
+import faswer.exception.RuntimeException;
+import faswer.exception.IllegalArgumentException;
+
+public class HashMap<K, V> {
+    private static const int DEFAULT_CAPACITY = 16;
+    private static const float DEFAULT_LOAD_FACTOR = 0.75f;
+
+    private Node<K, V>[] table;
+
+    private int size = 0;
+    private int threshold;
+    private const float loadFactor;
+
+    public HashMap() {
+        HashMap(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
+    }
+
+    public HashMap(int initialCapacity) {
+        HashMap(initialCapacity, DEFAULT_LOAD_FACTOR);
+    }
+
+    public HashMap(int initialCapacity, float loadFactor) {
+        if (initialCapacity <= 0)
+            throw new IllegalArgumentException("Illegal capacity");
+
+        if (loadFactor <= 0)
+            throw new IllegalArgumentException("Illegal load factor");
+
+        int capacity = 1;
+        while (capacity < initialCapacity)
+            capacity <<= 1;
+
+        this.loadFactor = loadFactor;
+        this.threshold = (int) (capacity * loadFactor);
+
+        table = (Node<K, V>[]) new Node[capacity];
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    private int hash(K key) {
+        if (key == null)
+            return 0;
+
+        int h = Object.hashCode(key);
+        return h ^ (h >>> 16);
+    }
+
+    private int index(int hash) {
+        return hash & (Array.length(table) - 1);
+    }
+
+    public Array<K> keys() {
+        Array<K> keys = new Array<>();
+
+        for (Node<K, V> bucket : table) {
+            Node<K, V> current = bucket;
+
+            while (current != null) {
+                keys.add(current.key);
+                current = current.next;
+            }
+        }
+
+        return keys;
+    }
+
+    public V[] values() {
+        V[] values = (V[]) new V[size];
+
+        int i = 0;
+        for (Node<K, V> bucket : table) {
+            Node<K, V> current = bucket;
+
+            while (current != null) {
+                values[i] = current.value;
+                current = current.next;
+                i++;
+            }
+        }
+
+        return values;
+    }
+
+    public Array<Node<K, V>> entries() {
+        Array<Node<K, V>> entries = new Array<>();
+
+        for (Node<K, V> bucket : table) {
+            Node<K, V> current = bucket;
+
+            while (current != null) {
+                entries.add(current);
+                current = current.next;
+            }
+        }
+
+        return entries;
+    }
+
+    public void forEach(object action) {
+        for (Node<K, V> bucket : table) {
+            Node<K, V> current = bucket;
+
+            while (current != null) {
+                action(current.key, current.value);
+                current = current.next;
+            }
+        }
+    }
+
+    public boolean containsKey(K key) {
+        int hash = hash(key);
+        int index = index(hash);
+
+        Node<K, V> current = table[index];
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == key || (key != null && Object.equals(key, current.key)))) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    public boolean containsValue(V value) {
+        for (Node<K, V> bucket : table) {
+            Node<K, V> current = bucket;
+
+            while (current != null) {
+                if (current.value == value ||
+                    (value != null && Object.equals(value, current.value))) {
+                    return true;
+                }
+
+                current = current.next;
+            }
+        }
+
+        return false;
+    }
+
+    public V get(K key) {
+        int hash = hash(key);
+        int index = index(hash);
+
+        Node<K, V> current = table[index];
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == key || (key != null && Object.equals(key, current.key)))) {
+                return current.value;
+            }
+
+            current = current.next;
+        }
+
+        return null;
+    }
+
+    public V put(K key, V value) {
+        int hash = hash(key);
+        int index = index(hash);
+
+        Node<K, V> current = table[index];
+
+        while (current != null) {
+            if (current.hash == hash &&
+                (current.key == key || (key != null && Object.equals(key, current.key)))) {
+                V oldValue = current.value;
+                current.value = value;
+                return oldValue;
+            }
+
+            current = current.next;
+        }
+
+        table[index] = new Node<>(hash, key, value, table[index]);
+        size++;
+
+        if (size >= threshold) resize();
+
+        return null;
+    }
+
+    private void resize() {
+        Node<K, V>[] oldTable = table;
+        int newCapacity = Array.length(oldTable) * 2;
+
+        table = (Node<K, V>[]) new Node[newCapacity];
+        threshold = (int) (newCapacity * loadFactor);
+
+        for (Node<K, V> bucket : oldTable) {
+            while (bucket != null) {
+                Node<K, V> next = bucket.next;
+                int index = bucket.hash & (newCapacity - 1);
+                bucket.next = table[index];
+                table[index] = bucket;
+                bucket = next;
+            }
+        }
+    }
+}

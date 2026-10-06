@@ -1,0 +1,122 @@
+package faswer.util;
+
+import faswer.exception.IndexOutOfBoundsException;
+import faswer.lang.Object;
+
+public class Array<T> extends Object {
+    private T[] data;
+    private int size;
+
+    public Array() {
+        new Array(16);
+    }
+
+    public Array(int capacity) {
+        data = (T[]) new Object[capacity];
+        size = 0;
+    }
+
+    public static native int length(object[] o);
+
+    public int size() {
+        return size;
+    }
+
+    public int capacity() {
+        return Array.length(data);
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public T get(int index) {
+        check(index);
+        return data[index];
+    }
+
+    public void set(int index, T value) {
+        check(index);
+        data[index] = value;
+    }
+
+    public void add(T value) {
+        ensureCapacity(size + 1);
+        data[size] = value;
+        size = size + 1;
+    }
+
+    public T remove(int index) {
+        check(index);
+
+        T old = data[index];
+
+        for (int i = index; i < size - 1; i++) data[i] = data[i + 1];
+
+        data[size - 1] = null;
+        size = size - 1;
+
+        return old;
+    }
+
+    public void clear() {
+        for (int i = 0; i < size; i++)
+            data[i] = null;
+
+        size = 0;
+    }
+
+    public boolean contains(T value) {
+        return indexOf(value) != -1;
+    }
+
+    public int indexOf(T value) {
+        for (int i = 0; i < size; i++) {
+            if (Object.equals(data[i], value))
+                return i;
+        }
+
+        return -1;
+    }
+
+    public T[] toArray() {
+        T[] result = (T[]) new Object[size];
+
+        for (int i = 0; i < size; i++)
+            result[i] = data[i];
+
+        return result;
+    }
+
+    public void forEach(object action) {
+        for (int i = 0; i < size; i++)
+            action(data[i]);
+    }
+
+    private void ensureCapacity(int needed) {
+        if (needed <= length(data))
+            return;
+
+        int newCap = length(data) * 2;
+
+        while (newCap < needed)
+            newCap *= 2;
+
+        T[] newData = (T[]) new Object[newCap];
+
+        for (int i = 0; i < size; i++)
+            newData[i] = data[i];
+
+        data = newData;
+    }
+
+    private void check(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+    }
+
+    public static native string toString(object[] value);
+    override public string toString() {
+        return toString(data);
+    }
+}
